@@ -5,7 +5,6 @@ st.set_page_config(page_title="Seguimiento de mudanzas YPF - Liftvan",
 
 import page_expo
 import page_impo
-from streamlit_autorefresh import st_autorefresh
 from streamlit_option_menu import option_menu
 from streamlit_cookies_manager import EncryptedCookieManager
 import os
