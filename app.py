@@ -3,9 +3,8 @@ st.set_page_config(page_title="Seguimiento de mudanzas YPF - Liftvan",
                    page_icon="📊", 
                    layout="wide")
 
-import stream_liftvan_ypf_impo
-import stream_liftvan_ypf_expo
-import stream_liftvan_ypf_nac
+import page_expo
+import page_impo
 from streamlit_autorefresh import st_autorefresh
 from streamlit_option_menu import option_menu
 from streamlit_cookies_manager import EncryptedCookieManager
@@ -70,11 +69,9 @@ else:
             orientation="horizontal")
     
     if page_selection == "Importación":
-        stream_liftvan_ypf_impo.show_page_liftvan_ypf_impo()
+        page_impo.show_page_impo
     elif page_selection == "Exportación":
-        stream_liftvan_ypf_expo.show_page_liftvan_ypf_expo()
-    elif page_selection == "Nacionales":
-        stream_liftvan_ypf_nac.show_page_liftvan_ypf_nac()
+        page_expo.show_page_expo()
     elif page_selection == "Logout":
         cookies.pop("logged_in", None)
         cookies.pop("username", None)
