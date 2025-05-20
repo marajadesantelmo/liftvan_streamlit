@@ -16,8 +16,6 @@ import os
 with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-refresh_interval_ms = 120 * 1000  # 2 minutes
-count = st_autorefresh(interval=refresh_interval_ms, limit=None, key="auto-refresh")
 
 USERNAMES = ["operativo", "administrativo"]
 PASSWORDS = ["op123", "adm123"]
