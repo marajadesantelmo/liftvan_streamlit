@@ -66,7 +66,7 @@ else:
             orientation="horizontal")
     
     if page_selection == "Importación":
-        page_impo.show_page_impo
+        page_impo.show_page_impo()
     elif page_selection == "Exportación":
         page_expo.show_page_expo()
     elif page_selection == "Logout":
