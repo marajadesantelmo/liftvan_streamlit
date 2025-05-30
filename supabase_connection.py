@@ -21,7 +21,8 @@ def fetch_table_data(table_name):
     return pd.DataFrame(query.data)
 
 def insert_review(data):
-    response = supabase_client.table("reviews").insert(data).execute()
+    # Wrap data in a list for single row insert
+    response = supabase_client.table("reviews").insert([data]).execute()
     return response
 
 def fetch_reviews():
@@ -33,3 +34,23 @@ def fetch_reviews():
         .execute()
     )
     return pd.DataFrame(query.data)
+
+def get_fake_review():
+    import datetime
+    return {
+        "username": "test_user",
+        "asistencia_estimador": 4,
+        "coordinador_trafico": 5,
+        "cortesia_coordinador": 4,
+        "apoyo_coordinador": 5,
+        "precision_informacion": 3,
+        "servicio_general_coordinador": 4,
+        "embaladores": 5,
+        "cortesia": 4,
+        "colaboracion_personal": 5,
+        "puntualidad": 5,
+        "calidad_empaque": 4,
+        "recomendaria": True,
+        "comentarios": "Todo excelente, muy recomendable.",
+        "created_at": datetime.datetime.now().isoformat()
+    }
