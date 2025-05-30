@@ -4,9 +4,11 @@ import datetime
 
 def show_page_review(username):
     st.header("Dejanos tu opinión sobre el servicio de mudanza")
-
-    nombre_apellido = st.text_input("Nombre y Apellido")
-    puesto = st.text_input("Puesto")
+    col1nombre, col2puesto = st.columns(2)
+    with col1nombre:
+        nombre_apellido = st.text_input("Nombre y Apellido")
+    with col2puesto:
+        puesto = st.text_input("Puesto")
 
     def star_input(label, key=None):
         return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
@@ -18,14 +20,14 @@ def show_page_review(username):
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("COORDINADOR DE TRAFICO")
+        st.subheader("Coordinador de Tráfico")
         cortesia_coordinador = star_input("Cortesía del coordinador", key="cortesia_coordinador")
         apoyo_coordinador = star_input("Apoyo del coordinador", key="apoyo_coordinador")
         precision_informacion = star_input("Precisión de la información", key="precision_informacion")
         servicio_general_coordinador = star_input("Servicio General del coordinador", key="servicio_general_coordinador")
 
     with col2:
-        st.subheader("EMBALADORES")
+        st.subheader("Embaladores")
         cortesia = star_input("Cortesía", key="cortesia")
         colaboracion_personal = star_input("Colaboración del personal", key="colaboracion_personal")
         puntualidad = star_input("Puntualidad", key="puntualidad")
