@@ -53,4 +53,4 @@ def get_fake_review():
         "recomendaria": True,
         "comentarios": "Probando probando.",
     }
-insert_review(get_fake_review()) 
+#insert_review(get_fake_review()) 
