@@ -11,23 +11,32 @@ def show_page_reviews_display():
     for _, row in reviews.iterrows():
         st.markdown("---")
         st.markdown(f"**Usuario:** {row.get('username', 'anonimo')}")
+        st.markdown(f"**Nombre y Apellido:** {row.get('nombre_apellido', '')}")
+        st.markdown(f"**Puesto:** {row.get('puesto', '')}")
         st.markdown(f"**Fecha:** {row.get('created_at', '')[:19]}")
         st.markdown(f"**Recomendaría:** {'Sí' if row.get('recomendaria') else 'No'}")
         st.markdown(f"**Comentarios:** {row.get('comentarios', '')}")
+
         st.markdown("**Puntajes:**")
-        st.write({
-            "Asistencia del Estimador": row.get("asistencia_estimador"),
-            "COORDINADOR DE TRAFICO": row.get("coordinador_trafico"),
-            "Cortesía del coordinador": row.get("cortesia_coordinador"),
-            "Apoyo del coordinador": row.get("apoyo_coordinador"),
-            "Precisión de la información": row.get("precision_informacion"),
-            "Servicio General del coordinador": row.get("servicio_general_coordinador"),
-            "EMBALADORES": row.get("embaladores"),
-            "Cortesía": row.get("cortesia"),
-            "Colaboración del personal": row.get("colaboracion_personal"),
-            "Puntualidad": row.get("puntualidad"),
-            "Calidad del empaque/desempaque": row.get("calidad_empaque"),
-        })
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("*Asistencia del Estimador*")
+            st.write(row.get("asistencia_estimador"))
+            st.markdown("**Coordinador de Tráfico**")
+            st.write({
+                "Cortesía del coordinador": row.get("cortesia_coordinador"),
+                "Apoyo del coordinador": row.get("apoyo_coordinador"),
+                "Precisión de la información": row.get("precision_informacion"),
+                "Servicio General del coordinador": row.get("servicio_general_coordinador"),
+            })
+        with col2:
+            st.markdown("**Embaladores**")
+            st.write({
+                "Cortesía": row.get("cortesia"),
+                "Colaboración del personal": row.get("colaboracion_personal"),
+                "Puntualidad": row.get("puntualidad"),
+                "Calidad del empaque/desempaque": row.get("calidad_empaque"),
+            })
 
 def main():
     show_page_reviews_display()
