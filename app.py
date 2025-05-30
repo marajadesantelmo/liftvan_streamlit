@@ -5,6 +5,8 @@ st.set_page_config(page_title="Seguimiento de mudanzas YPF - Liftvan",
 
 import page_expo
 import page_impo
+import page_review
+import page_reviews_display
 from streamlit_option_menu import option_menu
 from streamlit_cookies_manager import EncryptedCookieManager
 import os
@@ -54,8 +56,22 @@ if not st.session_state['logged_in']:
             st.error("Usuario o clave invalidos")
 else:
     
-    pages = ["Importación", "Exportación", "Nacionales", "Logout"]
-    icons = ["arrow-down-circle", "arrow-up-circle", "clock-history", "box-arrow-right"]
+    pages = [
+        "Importación", 
+        "Exportación", 
+        "Nacionales", 
+        "Agregar Opinión", 
+        "Ver Opiniones", 
+        "Logout"
+    ]
+    icons = [
+        "arrow-down-circle", 
+        "arrow-up-circle", 
+        "clock-history", 
+        "star", 
+        "chat-dots", 
+        "box-arrow-right"
+    ]
 
     page_selection = option_menu(
             None,  # No menu title
@@ -69,6 +85,10 @@ else:
         page_impo.show_page_impo()
     elif page_selection == "Exportación":
         page_expo.show_page_expo()
+    elif page_selection == "Agregar Opinión":
+        page_review.show_page_review(st.session_state.get("username", "anonimo"))
+    elif page_selection == "Ver Opiniones":
+        page_reviews_display.show_page_reviews_display()
     elif page_selection == "Logout":
         cookies.pop("logged_in", None)
         cookies.pop("username", None)
