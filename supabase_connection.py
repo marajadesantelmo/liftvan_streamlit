@@ -51,6 +51,6 @@ def get_fake_review():
         "puntualidad": 5,
         "calidad_empaque": 4,
         "recomendaria": True,
-        "comentarios": "Todo excelente, muy recomendable.",
-        "created_at": datetime.datetime.now().isoformat()
+        "comentarios": "Probando probando.",
     }
+insert_review(get_fake_review()) 

@@ -49,11 +49,17 @@ def show_page_review(username):
     }
 
     if st.button("Enviar opinión"):
-        resp = insert_review(review)
-        if hasattr(resp, "status_code") and resp.status_code == 201:
-            st.success("¡Gracias por tu opinión!")
-        else:
-            st.error("Hubo un error al guardar tu opinión. Intenta nuevamente.")
+        try:
+            resp = insert_review(review)
+            # Check for error in response (Supabase Python client returns .data and .error)
+            if hasattr(resp, "status_code") and resp.status_code == 201:
+                st.success("¡Gracias por tu opinión!")
+            elif hasattr(resp, "error") and resp.error:
+                st.error(f"Error al guardar la opinión: {resp.error}")
+            else:
+                st.error(f"Error desconocido: {resp}")
+        except Exception as e:
+            st.error(f"Excepción al guardar la opinión: {e}")
 
 def main():
     import streamlit as st
