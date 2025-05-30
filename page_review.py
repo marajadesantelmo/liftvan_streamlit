@@ -51,8 +51,8 @@ def show_page_review(username):
     if st.button("Enviar opinión"):
         try:
             resp = insert_review(review)
-            # Check for error in response (Supabase Python client returns .data and .error)
-            if hasattr(resp, "status_code") and resp.status_code == 201:
+            # Success if data is returned and not empty
+            if hasattr(resp, "data") and resp.data:
                 st.success("¡Gracias por tu opinión!")
             elif hasattr(resp, "error") and resp.error:
                 st.error(f"Error al guardar la opinión: {resp.error}")
