@@ -5,6 +5,9 @@ import datetime
 def show_page_review(username):
     st.header("Dejanos tu opinión sobre el servicio de mudanza")
 
+    nombre_apellido = st.text_input("Nombre y Apellido")
+    puesto = st.text_input("Puesto")
+
     def star_input(label, key=None):
         return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
 
@@ -33,12 +36,13 @@ def show_page_review(username):
 
     review = {
         "username": username,
+        "nombre_apellido": nombre_apellido,
+        "puesto": puesto,
         "asistencia_estimador": asistencia_estimador,
         "cortesia_coordinador": cortesia_coordinador,
         "apoyo_coordinador": apoyo_coordinador,
         "precision_informacion": precision_informacion,
         "servicio_general_coordinador": servicio_general_coordinador,
-        "embaladores": 5,  # You can remove or adjust this field if not needed
         "cortesia": cortesia,
         "colaboracion_personal": colaboracion_personal,
         "puntualidad": puntualidad,
