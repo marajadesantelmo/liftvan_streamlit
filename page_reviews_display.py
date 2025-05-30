@@ -19,8 +19,9 @@ def show_page_reviews_display():
             st.markdown(f"**Recomendaría:** {'Sí' if row.get('recomendaria') else 'No'}")
             st.markdown(f"**Comentarios:** {row.get('comentarios', '')}")
 
-        st.markdown("**Puntajes:**")
+        
         with col2:
+            st.markdown("**Puntajes:**")
             st.markdown("*Asistencia del Estimador*")
             st.write(row.get("asistencia_estimador"))
             st.markdown("**Coordinador de Tráfico**")
