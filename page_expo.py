@@ -7,13 +7,13 @@ def show_page_expo():
     # Load data
     expo = pd.read_csv('expo.csv')
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'FechaApertura', 'ExpoFechaEmbalaje']]
+        'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'ExpoFechaEmbalaje', 'ExpoFechaFiscal']]
+        'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
     en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'ExpoFechaFiscal', 'ExpoFechaSalidaReal']]
+        'Origen', 'Destino', 'Fecha Fiscal', 'FechaSalidaReal']]
     finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'ExpoFechaSalidaReal',  'ExpoFechaLlegada']]
+        'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:

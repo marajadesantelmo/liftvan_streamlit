@@ -1,9 +1,9 @@
-Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,FechaApertura,ExpoFechaEmbalaje,ExpoFechaFiscal,ExpoFechaSalidaReal,ExpoFechaLlegada,M3Reales,Libras,Kilos,Bultos
+Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Salida,Fecha Llegada,M3Reales,Libras,Kilos,Bultos
 Rodriguez Maria,Av. Libertad 1234,Buenos Aires,MoveWay USA,15.5,Abierto,8,Luciana Torres,1,Diego Rivas,Argentina,U.S.A.,2025-02-15,,,,,,,,
 Gonzalez Roberto,Calle Paz 567,Córdoba,Global Move Canada,8.2,Abierto,10,Luciana Torres,20,Paula Lescano,Argentina,Canada,2025-02-10,,,,,,,,
-Perez Juan,Av. San Martin 890,Mendoza,MoveWay UK,12.3,Embalado,13,Tomás Giménez,1,Diego Rivas,Argentina,UK,2025-01-05,2025-01-15,,,,12.5,2875,1250,18
-Lopez Ana,Calle Belgrano 432,Rosario,MoveCorp Japan,6.7,Embalado,8,Luciana Torres,20,Paula Lescano,Argentina,Japan,2025-01-10,2025-01-20,,,,7.1,1633,710,12
-Fernandez Carlos,Av. Corrientes 765,Buenos Aires,Global Move Brazil,10.8,En deposito,10,Luciana Torres,1,Diego Rivas,Argentina,Brazil,2024-12-15,2024-12-25,2025-01-05,,,11.2,2576,1120,15
-Martinez Sofia,Calle Florida 321,Córdoba,MoveWay Australia,9.3,En deposito,13,Tomás Giménez,20,Paula Lescano,Argentina,Australia,2024-12-20,2025-01-02,2025-01-10,,,9.5,2185,950,14
-Torres Diego,Av. Colon 987,Rosario,MoveCorp Spain,14.2,Finalizado,8,Luciana Torres,1,Diego Rivas,Argentina,Spain,2024-11-10,2024-11-20,2024-11-30,2024-12-05,2025-01-10,14.8,3404,1480,22
-Gomez Patricia,Calle Mayo 654,Mendoza,Global Move Italy,7.5,Finalizado,10,Luciana Torres,20,Paula Lescano,Argentina,Italy,2024-11-15,2024-11-25,2024-12-05,2024-12-10,2025-01-15,7.8,1794,780,11
+Perez Juan,Av. San Martin 890,Mendoza,MoveWay UK,12.3,Embalado,13,Tomás Giménez,1,Diego Rivas,Argentina,UK,2025-01-05,2025-01-15,,,,12.5,2875.0,1250.0,18.0
+Lopez Ana,Calle Belgrano 432,Rosario,MoveCorp Japan,6.7,Embalado,8,Luciana Torres,20,Paula Lescano,Argentina,Japan,2025-01-10,2025-01-20,,,,7.1,1633.0,710.0,12.0
+Fernandez Carlos,Av. Corrientes 765,Buenos Aires,Global Move Brazil,10.8,En deposito,10,Luciana Torres,1,Diego Rivas,Argentina,Brazil,2024-12-15,2024-12-25,2025-01-05,,,11.2,2576.0,1120.0,15.0
+Martinez Sofia,Calle Florida 321,Córdoba,MoveWay Australia,9.3,En deposito,13,Tomás Giménez,20,Paula Lescano,Argentina,Australia,2024-12-20,2025-01-02,2025-01-10,,,9.5,2185.0,950.0,14.0
+Torres Diego,Av. Colon 987,Rosario,MoveCorp Spain,14.2,Finalizado,8,Luciana Torres,1,Diego Rivas,Argentina,Spain,2024-11-10,2024-11-20,2024-11-30,2024-12-05,2025-01-10,14.8,3404.0,1480.0,22.0
+Gomez Patricia,Calle Mayo 654,Mendoza,Global Move Italy,7.5,Finalizado,10,Luciana Torres,20,Paula Lescano,Argentina,Italy,2024-11-15,2024-11-25,2024-12-05,2024-12-10,2025-01-15,7.8,1794.0,780.0,11.0
