@@ -37,9 +37,12 @@ def show_page_review(username):
     col3, col4 = st.columns(2)
     with col3:
         recomendaria = st.radio("¿Recomendaría nuestros servicios?", ["Sí", "No"])
-    comentarios = st.text_area("Comentarios")
+        comentarios = st.text_area("Comentarios")
     with col4:
-        asistencia_estimador = star_input("Asistencia del Estimador", key="asistencia_estimador")
+        col4a, col4b = st.columns([7, 1])
+        with col4a:
+            st.subheader("Estimador")
+            asistencia_estimador = star_input("Asistencia del Estimador", key="asistencia_estimador")
 
 
     review = {
