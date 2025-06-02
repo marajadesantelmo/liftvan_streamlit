@@ -11,7 +11,7 @@ def show_page_expo():
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
     en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Fiscal', 'FechaSalidaReal']]
+        'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
     finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
 
