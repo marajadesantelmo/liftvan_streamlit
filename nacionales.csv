@@ -1,11 +1,11 @@
 Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Salida,Fecha Llegada,M3Reales,Libras,Kilos,Bultos
-Sanchez Laura,Av. Rivadavia 1000,Salta,MoveNac Norte,10.0,Abierto,21,Marcos Ruiz,31,Silvia Gomez,Salta,Buenos Aires,2025-03-01,,,,,,,,  # 20 columns
+Sanchez Laura,Av. Rivadavia 1000,Salta,MoveNac Norte,10.0,Abierto,21,Marcos Ruiz,31,Silvia Gomez,Salta,Buenos Aires,2025-03-01,,,,,,,,,
 Martinez Pablo,Calle Mitre 200,Santa Fe,MoveNac Sur,7.5,Embalado,22,Marcos Ruiz,32,Silvia Gomez,Santa Fe,Cordoba,2025-02-20,2025-02-25,,,,7.2,1587.0,720.0,10.0
 Fernandez Lucia,Av. San Juan 300,Tucuman,MoveNac Centro,12.0,En deposito,23,Marcos Ruiz,33,Silvia Gomez,Tucuman,Mendoza,2025-02-10,2025-02-15,2025-02-20,,,11.8,2600.0,1180.0,14.0
 Perez Diego,Calle Sarmiento 400,Neuquen,MoveNac Patagonia,9.0,Finalizado,24,Marcos Ruiz,34,Silvia Gomez,Neuquen,Chubut,2025-01-15,2025-01-20,2025-01-25,2025-01-28,2025-02-05,8.7,1918.0,870.0,12.0
-Gomez Valeria,Calle Belgrano 123,Rosario,MoveNac Centro,8.5,Embalado,21,Marcos Ruiz,35,Federico Diaz,Rosario,La Plata,2025-03-05,2025-03-10,2025-03-12,,,,,,,  # 20 columns
+Gomez Valeria,Calle Belgrano 123,Rosario,MoveNac Centro,8.5,Embalado,21,Marcos Ruiz,35,Federico Diaz,Rosario,La Plata,2025-03-05,2025-03-10,2025-03-12,,,,,,,
 Lopez Hernan,Avenida Colon 765,Cordoba,MoveNac Norte,11.0,Finalizado,22,Marcos Ruiz,36,Federico Diaz,Cordoba,Tucuman,2025-01-10,2025-01-15,2025-01-20,2025-01-25,2025-02-01,10.6,2337.0,1060.0,13.0
-Mendez Carla,Calle 9 de Julio 300,La Plata,MoveNac Sur,6.5,En deposito,23,Marcos Ruiz,37,Federico Diaz,La Plata,Neuquen,2025-02-15,2025-02-18,,,,,,,,  # 20 columns
-Torres Fabian,Avenida Peron 444,San Juan,MoveNac Cuyo,13.2,Abierto,24,Marcos Ruiz,38,Federico Diaz,San Juan,San Luis,2025-03-12,,,,,,,,,  # 20 columns
+Mendez Carla,Calle 9 de Julio 300,La Plata,MoveNac Sur,6.5,En deposito,23,Marcos Ruiz,37,Federico Diaz,La Plata,Neuquen,2025-02-15,2025-02-18,,,,,,,,
+Torres Fabian,Avenida Peron 444,San Juan,MoveNac Cuyo,13.2,Abierto,24,Marcos Ruiz,38,Federico Diaz,San Juan,San Luis,2025-03-12,,,,,,,,,
 Acosta Norma,Calle Libertad 555,Formosa,MoveNac NEA,7.8,Finalizado,25,Marcos Ruiz,39,Federico Diaz,Formosa,Resistencia,2024-12-05,2024-12-10,2024-12-15,2024-12-18,2024-12-27,7.6,1675.0,760.0,9.0
-Reyes Tomas,Av. 25 de Mayo 678,San Luis,MoveNac Centro,10.0,Embalado,26,Marcos Ruiz,40,Federico Diaz,San Luis,Cordoba,2025-03-01,2025-03-06,,,,,,,,  # 20 columns
+Reyes Tomas,Av. 25 de Mayo 678,San Luis,MoveNac Centro,10.0,Embalado,26,Marcos Ruiz,40,Federico Diaz,San Luis,Cordoba,2025-03-01,2025-03-06,,,,,,,,
