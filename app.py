@@ -61,8 +61,8 @@ else:
         "Importación", 
         "Exportación", 
         "Nacionales", 
-        "Agregar Opinión", 
-        "Ver Opiniones", 
+        "Agregar Review", 
+        "Ver Reviews", 
         "Logout"
     ]
     icons = [
@@ -88,9 +88,9 @@ else:
         page_expo.show_page_expo()
     elif page_selection == "Nacionales":
         page_nacionales.show_page_nacionales()
-    elif page_selection == "Agregar Opinión":
+    elif page_selection == "Agregar Review":
         page_review.show_page_review(st.session_state.get("username", "anonimo"))
-    elif page_selection == "Ver Opiniones":
+    elif page_selection == "Ver Reviews":
         page_reviews_display.show_page_reviews_display()
     elif page_selection == "Logout":
         cookies.pop("logged_in", None)
