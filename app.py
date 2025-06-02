@@ -7,6 +7,7 @@ import page_expo
 import page_impo
 import page_review
 import page_reviews_display
+import page_nacionales
 from streamlit_option_menu import option_menu
 from streamlit_cookies_manager import EncryptedCookieManager
 import os
@@ -85,6 +86,8 @@ else:
         page_impo.show_page_impo()
     elif page_selection == "Exportación":
         page_expo.show_page_expo()
+    elif page_selection == "Nacionales":
+        page_nacionales.show_page_nacionales()
     elif page_selection == "Agregar Opinión":
         page_review.show_page_review(st.session_state.get("username", "anonimo"))
     elif page_selection == "Ver Opiniones":
