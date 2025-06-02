@@ -6,6 +6,14 @@ from datetime import datetime
 def show_page_expo():
     # Load data
     expo = pd.read_csv('expo.csv')
+    abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+        'Origen', 'Destino', 'FechaApertura', 'ExpoFechaEmbalaje']]
+    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+        'Origen', 'Destino', 'ExpoFechaEmbalaje', 'ExpoFechaFiscal']]
+    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+        'Origen', 'Destino', 'ExpoFechaFiscal', 'ExpoFechaSalidaReal']]
+    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+        'Origen', 'Destino', 'ExpoFechaSalidaReal',  'ExpoFechaLlegada']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
