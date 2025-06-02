@@ -13,28 +13,34 @@ def show_page_review(username):
     def star_input(label, key=None):
         return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
 
-    # Asistencia del Estimador (above columns)
-    asistencia_estimador = star_input("Asistencia del Estimador", key="asistencia_estimador")
-
     # Two columns for Coordinador and Embaladores
     col1, col2 = st.columns(2)
 
     with col1:
         st.subheader("Coordinador de Tráfico")
-        cortesia_coordinador = star_input("Cortesía del coordinador", key="cortesia_coordinador")
-        apoyo_coordinador = star_input("Apoyo del coordinador", key="apoyo_coordinador")
-        precision_informacion = star_input("Precisión de la información", key="precision_informacion")
-        servicio_general_coordinador = star_input("Servicio General del coordinador", key="servicio_general_coordinador")
+        col1a, col1b = st.columns([7, 1])
+        with col1a:
+            cortesia_coordinador = star_input("Cortesía del coordinador", key="cortesia_coordinador")
+            apoyo_coordinador = star_input("Apoyo del coordinador", key="apoyo_coordinador")
+            precision_informacion = star_input("Precisión de la información", key="precision_informacion")
+            servicio_general_coordinador = star_input("Servicio General del coordinador", key="servicio_general_coordinador")
 
     with col2:
         st.subheader("Embaladores")
-        cortesia = star_input("Cortesía", key="cortesia")
-        colaboracion_personal = star_input("Colaboración del personal", key="colaboracion_personal")
-        puntualidad = star_input("Puntualidad", key="puntualidad")
-        calidad_empaque = star_input("Calidad del empaque/desempaque", key="calidad_empaque")
+        col2a, col2b = st.columns([7, 1])
+        with col2a:
+            cortesia = star_input("Cortesía", key="cortesia")
+            colaboracion_personal = star_input("Colaboración del personal", key="colaboracion_personal")
+            puntualidad = star_input("Puntualidad", key="puntualidad")
+            calidad_empaque = star_input("Calidad del empaque/desempaque", key="calidad_empaque")
 
-    recomendaria = st.radio("¿Recomendaría nuestros servicios?", ["Sí", "No"])
+    col3, col4 = st.columns(2)
+    with col3:
+        recomendaria = st.radio("¿Recomendaría nuestros servicios?", ["Sí", "No"])
     comentarios = st.text_area("Comentarios")
+    with col4:
+        asistencia_estimador = star_input("Asistencia del Estimador", key="asistencia_estimador")
+
 
     review = {
         "username": username,
