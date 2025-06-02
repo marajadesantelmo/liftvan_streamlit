@@ -3,7 +3,7 @@ from supabase_connection import insert_review
 import datetime
 
 def show_page_review(username):
-    st.header("Dejanos tu opinión sobre el servicio de mudanza")
+    st.header("Dejanos tu review sobre el servicio de mudanza")
     col1nombre, col2puesto = st.columns(2)
     with col1nombre:
         nombre_apellido = st.text_input("Nombre y Apellido")
@@ -63,18 +63,18 @@ def show_page_review(username):
         "created_at": datetime.datetime.now().isoformat()
     }
 
-    if st.button("Enviar opinión"):
+    if st.button("Enviar Review"):
         try:
             resp = insert_review(review)
             # Success if data is returned and not empty
             if hasattr(resp, "data") and resp.data:
-                st.success("¡Gracias por tu opinión!")
+                st.success("¡Gracias por tu Review!")
             elif hasattr(resp, "error") and resp.error:
-                st.error(f"Error al guardar la opinión: {resp.error}")
+                st.error(f"Error al guardar la review: {resp.error}")
             else:
                 st.error(f"Error desconocido: {resp}")
         except Exception as e:
-            st.error(f"Excepción al guardar la opinión: {e}")
+            st.error(f"Excepción al guardar la review: {e}")
 
 def main():
     import streamlit as st
