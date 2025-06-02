@@ -6,6 +6,14 @@ from datetime import datetime
 def show_page_impo():
     # Load data
     impo = pd.read_csv('impo.csv')
+    abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+       'Origen', 'Destino', 'Fecha Apertura', 'Fecha Arribo']]
+    arribados = impo[impo['Estado'] == 'Arribado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+         'Origen', 'Destino', 'Fecha Arribo', 'Fecha Fiscal']]
+    en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+         'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Retiro']]
+    finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+         'Origen', 'Destino', 'Fecha Retiro', 'Fecha Desembala']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
@@ -18,24 +26,25 @@ def show_page_impo():
     col4, col5 = st.columns(2)
     with col4:
         st.subheader("Abiertos")
-        st.dataframe(impo[impo['Estado'] =='Abierto'],
+        st.dataframe(abiertos,
                      hide_index=True, use_container_width=True)
     with col5:
         st.subheader("Arribados")
-        st.dataframe(impo[impo['Estado'] == 'Arribado'],
+        st.dataframe(arribados,
                     hide_index=True, use_container_width=True)
     st.markdown("<hr>", unsafe_allow_html=True)
 
     col4, col5 = st.columns(2)
     with col4:
         st.subheader("En deposito")
-        st.dataframe(impo[impo['Estado'] == 'En deposito'],
+        st.dataframe(en_deposito,
                      hide_index=True, use_container_width=True)
     with col5:
         st.subheader("Finalizados")
-        st.dataframe(impo[impo['Estado'] == 'Finalizado'],
-                    hide_index=True, use_container_width=True)
-# Run the show_page function
+        st.dataframe(finalizados,
+                     hide_index=True, use_container_width=True)
+
+
 if __name__ == "__main__":
     while True:
         show_page_impo()
