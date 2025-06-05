@@ -7,9 +7,6 @@ def show_page_reviews_display():
     st.header("Estadísticas de Reviews de Mudanzas")
 
     reviews = fetch_reviews()
-    if reviews.empty:
-        st.info("Aún no hay opiniones registradas.")
-        return
 
     col1, col2 = st.columns([7, 1])
     with col1:
@@ -51,9 +48,7 @@ def show_page_reviews_display():
             "Categoría": ["Cortesía Coord.", "Apoyo Coord.", "Precisión Info.", "Serv. Gral. Coord.",
                         "Cortesía Emb.", "Colab. Emb.", "Puntualidad", "Calidad Empaque"],
             "Grupo": ["Coordinador"] * 4 + ["Embaladores"] * 4,
-            "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values
-        })
-
+            "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values    })
         fig = px.bar(
             avg_scores_by_cat,
             x="Categoría",
@@ -63,7 +58,7 @@ def show_page_reviews_display():
             title="Promedio de Puntajes por Grupo y Categoría",
             color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
     )
-    st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True)
 
     # Definir score_columns para el histograma
     score_columns = [estimador_column] + coordinador_columns + embaladores_columns
