@@ -69,6 +69,8 @@ def show_page_reviews_display():
 
     # Distribución de puntajes (histograma)
     st.subheader("Distribución de Puntajes")
+    # Definir score_columns para el histograma
+    score_columns = [estimador_column] + coordinador_columns + embaladores_columns
     hist_data = reviews.melt(value_vars=score_columns, var_name="Categoría", value_name="Puntaje")
     fig_hist = px.histogram(hist_data, x="Puntaje", color="Categoría", barmode="group", nbins=5)
     st.plotly_chart(fig_hist, use_container_width=True)
