@@ -15,30 +15,53 @@ def show_page_reviews_display():
     st.subheader("Resumen de Puntajes y Recomendaciones")
 
     # Promedios de cada categoría
-    score_columns = [
-        "asistencia_estimador",
+    # Definir columnas por grupo
+    coordinador_columns = [
         "cortesia_coordinador",
         "apoyo_coordinador",
         "precision_informacion",
-        "servicio_general_coordinador",
+        "servicio_general_coordinador"
+    ]
+    embaladores_columns = [
         "cortesia",
         "colaboracion_personal",
         "puntualidad",
         "calidad_empaque"
     ]
-    avg_scores = reviews[score_columns].mean().round(2)
+    estimador_column = "asistencia_estimador"
 
-    # Gráfico de barras de promedios
+    # Calcular promedios por categoría
+    avg_scores = {
+        "Coordinador": reviews[coordinador_columns].mean(axis=1).mean().round(2),
+        "Embaladores": reviews[embaladores_columns].mean(axis=1).mean().round(2),
+        "Estimador": reviews[estimador_column].mean().round(2)
+    }
+
+    # Preparar datos para gráfico de barras agrupado
+    avg_scores_by_cat = pd.DataFrame({
+        "Categoría": ["Cortesía Coord.", "Apoyo Coord.", "Precisión Info.", "Serv. Gral. Coord.",
+                      "Cortesía Emb.", "Colab. Emb.", "Puntualidad", "Calidad Empaque"],
+        "Grupo": ["Coordinador"] * 4 + ["Embaladores"] * 4,
+        "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values
+    })
+
     fig = px.bar(
-        avg_scores,
-        x=avg_scores.index.str.replace("_", " ").str.title(),
-        y=avg_scores.values,
-        labels={"x": "Categoría", "y": "Promedio"},
-        title="Promedio de Puntajes por Categoría",
-        color=avg_scores.values,
-        color_continuous_scale="Blues"
+        avg_scores_by_cat,
+        x="Categoría",
+        y="Promedio",
+        color="Grupo",
+        barmode="group",
+        title="Promedio de Puntajes por Grupo y Categoría",
+        color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
     )
     st.plotly_chart(fig, use_container_width=True)
+
+    # Mostrar tabla de promedios por grupo
+    st.markdown("**Promedio general por grupo:**")
+    st.table(pd.DataFrame({
+        "Grupo": ["Estimador", "Coordinador", "Embaladores"],
+        "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
+    }).set_index("Grupo"))
 
     # Porcentaje de recomendación
     rec_rate = reviews["recomendaria"].mean() * 100
