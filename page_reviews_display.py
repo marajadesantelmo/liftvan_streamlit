@@ -10,7 +10,7 @@ def show_page_reviews_display():
 
     col1, col2 = st.columns([7, 1])
     with col1:
-        st.subheader("Resumen de Puntajes y Recomendaciones")
+        st.info("Resumen de puntajes y recomendaciones dejadas por los usuarios")
     with col2:
         rec_rate = reviews["recomendaria"].mean() * 100
         st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
@@ -51,12 +51,14 @@ def show_page_reviews_display():
         )
         fig_pie.update_traces(
             textinfo='percent+label',
-            textfont_size=22
+            textfont_size=22,
+            textfont_color='white'  # Make values white for better contrast
         )
         fig_pie.update_layout(
             width=400,
             height=400,
-            legend=dict(font=dict(size=20)),
+            showlegend=False,  # Remove legend
+            title_font_size=28,  # Bigger title
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)'
         )
@@ -78,43 +80,44 @@ def show_page_reviews_display():
         )
         fig.update_layout(
             paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)'
+            plot_bgcolor='rgba(0,0,0,0)',
+            title_font_size=28  # Bigger title
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    score_columns = [estimador_column] + coordinador_columns + embaladores_columns
+        score_columns = [estimador_column] + coordinador_columns + embaladores_columns
 
-    st.subheader("Promedio por Categoría")
-    categoria_map = {
-        "asistencia_estimador": "Asistencia Estimador",
-        "cortesia_coordinador": "Cortesía Coordinador",
-        "apoyo_coordinador": "Apoyo Coordinador",
-        "precision_informacion": "Precisión Información",
-        "servicio_general_coordinador": "Servicio General Coordinador",
-        "cortesia": "Cortesía Embaladores",
-        "colaboracion_personal": "Colaboración Personal",
-        "puntualidad": "Puntualidad",
-        "calidad_empaque": "Calidad Empaque"
-    }
-    avg_by_cat = reviews[score_columns].mean().reset_index()
-    avg_by_cat.columns = ["Categoría", "Promedio"]
-    avg_by_cat["Categoría"] = avg_by_cat["Categoría"].map(categoria_map)
-    fig_barh = px.bar(
-        avg_by_cat,
-        y="Categoría",
-        x="Promedio",
-        orientation="h",
-        title="Promedio por Categoría",
-        text="Promedio",
-        color="Promedio",
-        color_continuous_scale="Blues"
-    )
-    fig_barh.update_layout(
-        yaxis_title="", xaxis_title="Promedio",
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)'
-    )
-    st.plotly_chart(fig_barh, use_container_width=True)
+        categoria_map = {
+            "asistencia_estimador": "Asistencia Estimador",
+            "cortesia_coordinador": "Cortesía Coordinador",
+            "apoyo_coordinador": "Apoyo Coordinador",
+            "precision_informacion": "Precisión Información",
+            "servicio_general_coordinador": "Servicio General Coordinador",
+            "cortesia": "Cortesía Embaladores",
+            "colaboracion_personal": "Colaboración Personal",
+            "puntualidad": "Puntualidad",
+            "calidad_empaque": "Calidad Empaque"
+        }
+        avg_by_cat = reviews[score_columns].mean().reset_index()
+        avg_by_cat.columns = ["Categoría", "Promedio"]
+        avg_by_cat["Categoría"] = avg_by_cat["Categoría"].map(categoria_map)
+        fig_barh = px.bar(
+            avg_by_cat,
+            y="Categoría",
+            x="Promedio",
+            orientation="h",
+            title="Promedio por Categoría",
+            text="Promedio",
+            color="Promedio",
+            color_continuous_scale="Blues"
+        )
+        fig_barh.update_layout(
+            yaxis_title="", xaxis_title="Promedio",
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            title_font_size=28  # Bigger title
+        )
+        st.plotly_chart(fig_barh, use_container_width=True)
 
     st.markdown("---")
     st.subheader("Reseñas Recientes")
