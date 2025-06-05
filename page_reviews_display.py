@@ -43,6 +43,8 @@ def show_page_reviews_display():
             "Grupo": ["Estimador", "Coordinador", "Embaladores"],
             "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
         }).set_index("Grupo"))
+            
+
         rec_counts = reviews["recomendaria"].value_counts().rename({True: "Sí", False: "No"})
         fig_pie = px.pie(
             names=rec_counts.index,
