@@ -36,11 +36,13 @@ def show_page_reviews_display():
     }
     col1b, col2b = st.columns([3, 5])
     with col1b:
-        st.markdown("**Promedio general por grupo:**")
-        st.table(pd.DataFrame({
-        "Grupo": ["Estimador", "Coordinador", "Embaladores"],
-        "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
-    }).set_index("Grupo"))
+        col1b1, col1b2 = st.columns([3, 1])
+        with col1b1:
+            st.markdown("**Promedio general por grupo:**")
+            st.table(pd.DataFrame({
+            "Grupo": ["Estimador", "Coordinador", "Embaladores"],
+            "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
+        }).set_index("Grupo"))
         rec_counts = reviews["recomendaria"].value_counts().rename({True: "Sí", False: "No"})
         fig_pie = px.pie(
             names=rec_counts.index,
