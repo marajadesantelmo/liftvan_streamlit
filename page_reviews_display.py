@@ -75,6 +75,36 @@ def show_page_reviews_display():
     fig_hist = px.histogram(hist_data, x="Puntaje", color="Categoría", barmode="group", nbins=5)
     st.plotly_chart(fig_hist, use_container_width=True)
 
+    # --- Promedio por Categoría (Barra Horizontal) ---
+    st.subheader("Promedio por Categoría")
+    # Mapeo de nombres a formato título
+    categoria_map = {
+        "asistencia_estimador": "Asistencia Estimador",
+        "cortesia_coordinador": "Cortesía Coordinador",
+        "apoyo_coordinador": "Apoyo Coordinador",
+        "precision_informacion": "Precisión Información",
+        "servicio_general_coordinador": "Servicio General Coordinador",
+        "cortesia": "Cortesía Embaladores",
+        "colaboracion_personal": "Colaboración Personal",
+        "puntualidad": "Puntualidad",
+        "calidad_empaque": "Calidad Empaque"
+    }
+    avg_by_cat = reviews[score_columns].mean().reset_index()
+    avg_by_cat.columns = ["Categoría", "Promedio"]
+    avg_by_cat["Categoría"] = avg_by_cat["Categoría"].map(categoria_map)
+    fig_barh = px.bar(
+        avg_by_cat,
+        y="Categoría",
+        x="Promedio",
+        orientation="h",
+        title="Promedio por Categoría",
+        text="Promedio",
+        color="Promedio",
+        color_continuous_scale="Blues"
+    )
+    fig_barh.update_layout(yaxis_title="", xaxis_title="Promedio")
+    st.plotly_chart(fig_barh, use_container_width=True)
+
     st.markdown("---")
     st.subheader("Reseñas Recientes")
 
