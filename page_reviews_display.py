@@ -42,7 +42,7 @@ def show_page_reviews_display():
     col1b, col2b = st.columns([2, 6])
     with col1b:
         st.markdown("**Promedio general por grupo:**")
-    st.table(pd.DataFrame({
+        st.table(pd.DataFrame({
         "Grupo": ["Estimador", "Coordinador", "Embaladores"],
         "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
     }).set_index("Grupo"))
