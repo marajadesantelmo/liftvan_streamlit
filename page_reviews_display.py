@@ -57,8 +57,8 @@ def show_page_reviews_display():
             textfont_size=22  # Bigger values font
         )
         fig_pie.update_layout(
-            width=200,  # Half smaller (default is 400)
-            height=200,
+            width=400,  # Much bigger pie
+            height=400,
             legend=dict(
             font=dict(size=20)  # Bigger legend font
             )
