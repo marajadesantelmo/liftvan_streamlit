@@ -14,31 +14,35 @@ def show_page_reviews_display():
     # --- Estadísticas ---
     st.subheader("Resumen de Puntajes y Recomendaciones")
 
-    # Promedios de cada categoría
-    score_columns = [
-        "asistencia_estimador",
-        "cortesia_coordinador",
-        "apoyo_coordinador",
-        "precision_informacion",
-        "servicio_general_coordinador",
-        "cortesia",
-        "colaboracion_personal",
-        "puntualidad",
-        "calidad_empaque"
+    # Agrupar promedios por grupo
+    scores_embaladores = [
+        "cortesia", "colaboracion_personal", "puntualidad", "calidad_empaque"
     ]
-    avg_scores = reviews[score_columns].mean().round(2)
+    scores_coordinador = [
+        "cortesia_coordinador", "apoyo_coordinador", "precision_informacion", "servicio_general_coordinador"
+    ]
+    scores_estimador = ["asistencia_estimador"]
 
-    # Gráfico de barras de promedios
-    fig = px.bar(
-        avg_scores,
-        x=avg_scores.index.str.replace("_", " ").str.title(),
-        y=avg_scores.values,
-        labels={"x": "Categoría", "y": "Promedio"},
-        title="Promedio de Puntajes por Categoría",
-        color=avg_scores.values,
-        color_continuous_scale="Blues"
+    avg_embaladores = reviews[scores_embaladores].mean().mean().round(2)
+    avg_coordinador = reviews[scores_coordinador].mean().mean().round(2)
+    avg_estimador = reviews[scores_estimador].mean().mean().round(2)
+
+    avg_grouped = pd.DataFrame({
+        "Grupo": ["Embaladores", "Coordinador de Tráfico", "Estimador"],
+        "Promedio": [avg_embaladores, avg_coordinador, avg_estimador]
+    })
+
+    fig_grouped = px.bar(
+        avg_grouped,
+        x="Grupo",
+        y="Promedio",
+        color="Grupo",
+        text="Promedio",
+        title="Promedio de Puntajes por Grupo"
     )
-    st.plotly_chart(fig, use_container_width=True)
+    fig_grouped.update_traces(texttemplate='%{text:.2f}', textposition='outside')
+    fig_grouped.update_layout(yaxis=dict(range=[0, 5]), showlegend=False)
+    st.plotly_chart(fig_grouped, use_container_width=True)
 
     # Porcentaje de recomendación
     rec_rate = reviews["recomendaria"].mean() * 100
@@ -46,6 +50,7 @@ def show_page_reviews_display():
 
     # Distribución de puntajes (histograma)
     st.subheader("Distribución de Puntajes")
+    score_columns = scores_estimador + scores_coordinador + scores_embaladores
     hist_data = reviews.melt(value_vars=score_columns, var_name="Categoría", value_name="Puntaje")
     fig_hist = px.histogram(hist_data, x="Puntaje", color="Categoría", barmode="group", nbins=5)
     st.plotly_chart(fig_hist, use_container_width=True)
@@ -60,12 +65,10 @@ def show_page_reviews_display():
         "servicio_general_coordinador", "cortesia", "colaboracion_personal",
         "puntualidad", "calidad_empaque", "recomendaria", "comentarios"
     ]
-    # Formatear fecha y recomendación
     df = reviews[compact_cols].copy()
     df["created_at"] = pd.to_datetime(df["created_at"]).dt.strftime("%Y-%m-%d %H:%M")
     df["recomendaria"] = df["recomendaria"].map({True: "Sí", False: "No"})
 
-    # Mostrar tabla compacta
     st.dataframe(
         df.rename(columns={
             "created_at": "Fecha",
