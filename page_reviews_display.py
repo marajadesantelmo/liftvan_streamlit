@@ -112,6 +112,7 @@ def show_page_reviews_display():
     ]
     # Formatear fecha y recomendación
     df = reviews[compact_cols].copy()
+    df = df.drop(columns=["puesto"], errors='ignore') 
     df["created_at"] = pd.to_datetime(df["created_at"]).dt.strftime("%Y-%m-%d %H:%M")
     df["recomendaria"] = df["recomendaria"].map({True: "Sí", False: "No"})
 
@@ -120,7 +121,6 @@ def show_page_reviews_display():
         df.rename(columns={
             "created_at": "Fecha",
             "nombre_apellido": "Nombre y Apellido",
-            "puesto": "Puesto",
             "asistencia_estimador": "Estimador",
             "cortesia_coordinador": "Cortesía Coord.",
             "apoyo_coordinador": "Apoyo Coord.",
