@@ -73,21 +73,6 @@ def show_page_reviews_display():
                         "Cortesía Emb.", "Colab. Emb.", "Puntualidad", "Calidad Empaque"],
             "Grupo": ["Coordinador"] * 4 + ["Embaladores"] * 4,
             "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values    })
-        fig = px.bar(
-            avg_scores_by_cat,
-            x="Categoría",
-            y="Promedio",
-            color="Grupo",
-            barmode="group",
-            title="Promedio de Puntajes por Grupo y Categoría",
-            color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
-        )
-        fig.update_layout(
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            title_font_size=28  # Bigger title
-        )
-        st.plotly_chart(fig, use_container_width=True)
 
         score_columns = [estimador_column] + coordinador_columns + embaladores_columns
 
