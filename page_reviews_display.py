@@ -15,7 +15,6 @@ def show_page_reviews_display():
         rec_rate = reviews["recomendaria"].mean() * 100
         st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
 
-    
     coordinador_columns = [
         "cortesia_coordinador",
         "apoyo_coordinador",
@@ -30,7 +29,6 @@ def show_page_reviews_display():
     ]
     estimador_column = "asistencia_estimador"
 
-    # Calcular promedios por categoría
     avg_scores = {
         "Coordinador": reviews[coordinador_columns].mean(axis=1).mean().round(2),
         "Embaladores": reviews[embaladores_columns].mean(axis=1).mean().round(2),
@@ -43,7 +41,6 @@ def show_page_reviews_display():
         "Grupo": ["Estimador", "Coordinador", "Embaladores"],
         "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
     }).set_index("Grupo"))
-        # Pie chart for "Recomendaría / No recomendaría"
         rec_counts = reviews["recomendaria"].value_counts().rename({True: "Sí", False: "No"})
         fig_pie = px.pie(
             names=rec_counts.index,
@@ -54,14 +51,14 @@ def show_page_reviews_display():
         )
         fig_pie.update_traces(
             textinfo='percent+label',
-            textfont_size=22  # Bigger values font
+            textfont_size=22
         )
         fig_pie.update_layout(
-            width=400,  # Much bigger pie
+            width=400,
             height=400,
-            legend=dict(
-            font=dict(size=20)  # Bigger legend font
-            )
+            legend=dict(font=dict(size=20)),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
         )
         st.plotly_chart(fig_pie, use_container_width=True)
     with col2b:
@@ -78,15 +75,16 @@ def show_page_reviews_display():
             barmode="group",
             title="Promedio de Puntajes por Grupo y Categoría",
             color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
-    )
+        )
+        fig.update_layout(
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
         st.plotly_chart(fig, use_container_width=True)
 
-    # Definir score_columns para el histograma
     score_columns = [estimador_column] + coordinador_columns + embaladores_columns
 
-    # --- Promedio por Categoría (Barra Horizontal) ---
     st.subheader("Promedio por Categoría")
-    # Mapeo de nombres a formato título
     categoria_map = {
         "asistencia_estimador": "Asistencia Estimador",
         "cortesia_coordinador": "Cortesía Coordinador",
@@ -111,26 +109,27 @@ def show_page_reviews_display():
         color="Promedio",
         color_continuous_scale="Blues"
     )
-    fig_barh.update_layout(yaxis_title="", xaxis_title="Promedio")
+    fig_barh.update_layout(
+        yaxis_title="", xaxis_title="Promedio",
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)'
+    )
     st.plotly_chart(fig_barh, use_container_width=True)
 
     st.markdown("---")
     st.subheader("Reseñas Recientes")
 
-    # --- Tabla compacta de reviews ---
     compact_cols = [
         "created_at", "nombre_apellido", "puesto", "asistencia_estimador",
         "cortesia_coordinador", "apoyo_coordinador", "precision_informacion",
         "servicio_general_coordinador", "cortesia", "colaboracion_personal",
         "puntualidad", "calidad_empaque", "recomendaria", "comentarios"
     ]
-    # Formatear fecha y recomendación
     df = reviews[compact_cols].copy()
     df = df.drop(columns=["puesto"], errors='ignore') 
     df["created_at"] = pd.to_datetime(df["created_at"]).dt.strftime("%Y-%m-%d %H:%M")
     df["recomendaria"] = df["recomendaria"].map({True: "Sí", False: "No"})
 
-    # Mostrar tabla compacta
     st.dataframe(
         df.rename(columns={
             "created_at": "Fecha",
