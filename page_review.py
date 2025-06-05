@@ -7,8 +7,6 @@ def show_page_review(username):
     col1nombre, col2puesto = st.columns(2)
     with col1nombre:
         nombre_apellido = st.text_input("Nombre y Apellido")
-    with col2puesto:
-        puesto = st.text_input("Puesto")
 
     def star_input(label, key=None):
         return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
@@ -48,7 +46,6 @@ def show_page_review(username):
     review = {
         "username": username,
         "nombre_apellido": nombre_apellido,
-        "puesto": puesto,
         "asistencia_estimador": asistencia_estimador,
         "cortesia_coordinador": cortesia_coordinador,
         "apoyo_coordinador": apoyo_coordinador,
