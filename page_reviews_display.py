@@ -67,13 +67,8 @@ def show_page_reviews_display():
     rec_rate = reviews["recomendaria"].mean() * 100
     st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
 
-    # Distribución de puntajes (histograma)
-    st.subheader("Distribución de Puntajes")
     # Definir score_columns para el histograma
     score_columns = [estimador_column] + coordinador_columns + embaladores_columns
-    hist_data = reviews.melt(value_vars=score_columns, var_name="Categoría", value_name="Puntaje")
-    fig_hist = px.histogram(hist_data, x="Puntaje", color="Categoría", barmode="group", nbins=5)
-    st.plotly_chart(fig_hist, use_container_width=True)
 
     # --- Promedio por Categoría (Barra Horizontal) ---
     st.subheader("Promedio por Categoría")
