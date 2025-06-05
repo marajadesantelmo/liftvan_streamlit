@@ -48,11 +48,21 @@ def show_page_reviews_display():
         fig_pie = px.pie(
             names=rec_counts.index,
             values=rec_counts.values,
-            title="Distribución de Recomendaciones",
+            title="¿Recomendaría el servicio?",
             color=rec_counts.index,
             color_discrete_map={"Sí": "#4F8DFD", "No": "#FF6961"}
         )
-        fig_pie.update_traces(textinfo='percent+label')
+        fig_pie.update_traces(
+            textinfo='percent+label',
+            textfont_size=22  # Bigger values font
+        )
+        fig_pie.update_layout(
+            width=200,  # Half smaller (default is 400)
+            height=200,
+            legend=dict(
+            font=dict(size=20)  # Bigger legend font
+            )
+        )
         st.plotly_chart(fig_pie, use_container_width=True)
     with col2b:
         avg_scores_by_cat = pd.DataFrame({
