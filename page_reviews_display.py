@@ -15,8 +15,8 @@ def show_page_reviews_display():
     with col1:
         st.subheader("Resumen de Puntajes y Recomendaciones")
     with col2:
-            rec_rate = reviews["recomendaria"].mean() * 100
-            st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
+        rec_rate = reviews["recomendaria"].mean() * 100
+        st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
 
     
     coordinador_columns = [
