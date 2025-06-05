@@ -36,13 +36,24 @@ def show_page_reviews_display():
         "Embaladores": reviews[embaladores_columns].mean(axis=1).mean().round(2),
         "Estimador": reviews[estimador_column].mean().round(2)
     }
-    col1b, col2b = st.columns([2, 6])
+    col1b, col2b = st.columns([3, 5])
     with col1b:
         st.markdown("**Promedio general por grupo:**")
         st.table(pd.DataFrame({
         "Grupo": ["Estimador", "Coordinador", "Embaladores"],
         "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
     }).set_index("Grupo"))
+        # Pie chart for "Recomendaría / No recomendaría"
+        rec_counts = reviews["recomendaria"].value_counts().rename({True: "Sí", False: "No"})
+        fig_pie = px.pie(
+            names=rec_counts.index,
+            values=rec_counts.values,
+            title="Distribución de Recomendaciones",
+            color=rec_counts.index,
+            color_discrete_map={"Sí": "#4F8DFD", "No": "#FF6961"}
+        )
+        fig_pie.update_traces(textinfo='percent+label')
+        st.plotly_chart(fig_pie, use_container_width=True)
     with col2b:
         avg_scores_by_cat = pd.DataFrame({
             "Categoría": ["Cortesía Coord.", "Apoyo Coord.", "Precisión Info.", "Serv. Gral. Coord.",
