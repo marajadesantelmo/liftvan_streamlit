@@ -11,11 +11,14 @@ def show_page_reviews_display():
         st.info("Aún no hay opiniones registradas.")
         return
 
-    # --- Estadísticas ---
-    st.subheader("Resumen de Puntajes y Recomendaciones")
+    col1, col2 = st.columns([7, 1])
+    with col1:
+        st.subheader("Resumen de Puntajes y Recomendaciones")
+    with col2:
+            rec_rate = reviews["recomendaria"].mean() * 100
+            st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
 
-    # Promedios de cada categoría
-    # Definir columnas por grupo
+    
     coordinador_columns = [
         "cortesia_coordinador",
         "apoyo_coordinador",
@@ -36,36 +39,31 @@ def show_page_reviews_display():
         "Embaladores": reviews[embaladores_columns].mean(axis=1).mean().round(2),
         "Estimador": reviews[estimador_column].mean().round(2)
     }
-
-    # Preparar datos para gráfico de barras agrupado
-    avg_scores_by_cat = pd.DataFrame({
-        "Categoría": ["Cortesía Coord.", "Apoyo Coord.", "Precisión Info.", "Serv. Gral. Coord.",
-                      "Cortesía Emb.", "Colab. Emb.", "Puntualidad", "Calidad Empaque"],
-        "Grupo": ["Coordinador"] * 4 + ["Embaladores"] * 4,
-        "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values
-    })
-
-    fig = px.bar(
-        avg_scores_by_cat,
-        x="Categoría",
-        y="Promedio",
-        color="Grupo",
-        barmode="group",
-        title="Promedio de Puntajes por Grupo y Categoría",
-        color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
-    )
-    st.plotly_chart(fig, use_container_width=True)
-
-    # Mostrar tabla de promedios por grupo
-    st.markdown("**Promedio general por grupo:**")
+    col1b, col2b = st.columns([2, 6])
+    with col1b:
+        st.markdown("**Promedio general por grupo:**")
     st.table(pd.DataFrame({
         "Grupo": ["Estimador", "Coordinador", "Embaladores"],
         "Promedio": [avg_scores["Estimador"], avg_scores["Coordinador"], avg_scores["Embaladores"]]
     }).set_index("Grupo"))
+    with col2b:
+        avg_scores_by_cat = pd.DataFrame({
+            "Categoría": ["Cortesía Coord.", "Apoyo Coord.", "Precisión Info.", "Serv. Gral. Coord.",
+                        "Cortesía Emb.", "Colab. Emb.", "Puntualidad", "Calidad Empaque"],
+            "Grupo": ["Coordinador"] * 4 + ["Embaladores"] * 4,
+            "Promedio": reviews[coordinador_columns + embaladores_columns].mean().round(2).values
+        })
 
-    # Porcentaje de recomendación
-    rec_rate = reviews["recomendaria"].mean() * 100
-    st.metric("Recomendaría el servicio (%)", f"{rec_rate:.1f}%")
+        fig = px.bar(
+            avg_scores_by_cat,
+            x="Categoría",
+            y="Promedio",
+            color="Grupo",
+            barmode="group",
+            title="Promedio de Puntajes por Grupo y Categoría",
+            color_discrete_map={"Coordinador": "#4F8DFD", "Embaladores": "#7ED957"}
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
     # Definir score_columns para el histograma
     score_columns = [estimador_column] + coordinador_columns + embaladores_columns
