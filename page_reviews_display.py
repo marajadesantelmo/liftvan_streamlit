@@ -124,7 +124,7 @@ def show_page_reviews_display():
         st.plotly_chart(fig_barh, use_container_width=True)
 
     st.markdown("---")
-    st.subheader("Reseñas Recientes")
+    st.subheader("Dealles de Reviews")
 
     compact_cols = [
         "created_at", "nombre_apellido", "puesto", "asistencia_estimador",
@@ -132,10 +132,46 @@ def show_page_reviews_display():
         "servicio_general_coordinador", "cortesia", "colaboracion_personal",
         "puntualidad", "calidad_empaque", "recomendaria", "comentarios"
     ]
+    # Filtros y buscador
+    with st.expander("Filtrar y buscar reviews"):
+        col_f1, col_f2, col_f3 = st.columns([2, 2, 4])
+        with col_f1:
+            recomendar_filter = st.selectbox(
+                "¿Recomienda?",
+                options=["Todos", "Sí", "No"],
+                index=0
+            )
+        with col_f2:
+            fecha_min = reviews["created_at"].min()
+            fecha_max = reviews["created_at"].max()
+            fecha_range = st.date_input(
+                "Rango de fechas",
+                value=(pd.to_datetime(fecha_min), pd.to_datetime(fecha_max)),
+                min_value=pd.to_datetime(fecha_min),
+                max_value=pd.to_datetime(fecha_max)
+            )
+        with col_f3:
+            search_text = st.text_input("Buscar por nombre o comentario")
+
     df = reviews[compact_cols].copy()
-    df = df.drop(columns=["puesto"], errors='ignore') 
-    df["created_at"] = pd.to_datetime(df["created_at"]).dt.strftime("%Y-%m-%d %H:%M")
+    df = df.drop(columns=["puesto"], errors='ignore')
+    df["created_at"] = pd.to_datetime(df["created_at"])
     df["recomendaria"] = df["recomendaria"].map({True: "Sí", False: "No"})
+
+    # Aplicar filtros
+    if recomendar_filter != "Todos":
+        df = df[df["recomendaria"] == recomendar_filter]
+    if isinstance(fecha_range, tuple) and len(fecha_range) == 2:
+        start, end = pd.to_datetime(fecha_range[0]), pd.to_datetime(fecha_range[1])
+        df = df[(df["created_at"] >= start) & (df["created_at"] <= end + pd.Timedelta(days=1))]
+    if search_text:
+        mask = (
+            df["nombre_apellido"].str.contains(search_text, case=False, na=False) |
+            df["comentarios"].str.contains(search_text, case=False, na=False)
+        )
+        df = df[mask]
+
+    df["created_at"] = df["created_at"].dt.strftime("%Y-%m-%d %H:%M")
 
     st.dataframe(
         df.rename(columns={
