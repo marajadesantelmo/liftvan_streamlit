@@ -23,7 +23,7 @@ def show_page_expo():
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
-        st.header(f"Estado de mudanzas de expo")
+        st.header(f"Estado de mudanzas de EXPO")
     with col_logo:
         st.image('logo_ypf.png')
     with col_simpa:
