@@ -12,9 +12,11 @@ def show_page_expo():
         st.header(f"Estado de mudanzas de EXPO")
         col_title1, col_title2 = st.columns([1, 3])
         with col_title1:
-                search_name = st.text_input("Buscar por nombre de titular")
-                if search_name:
-                    expo = expo[expo['Titular'].str.contains(search_name, case=False, na=False)]
+            titulares = expo['Titular'].dropna().unique().tolist()
+            titulares.sort()
+            search_name = st.selectbox("Buscar por nombre de titular", options=["(Todos)"] + titulares)
+            if search_name and search_name != "(Todos)":
+                expo = expo[expo['Titular'] == search_name]
     with col_logo:
         st.image('logo_ypf.png')
     with col_simpa:
