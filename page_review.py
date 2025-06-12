@@ -9,7 +9,7 @@ def show_page_review(username):
         nombre_apellido = st.text_input("Nombre y Apellido")
 
     # Require username before proceeding
-    if not username or username.strip() == "" or username == "anonimo":
+    if not nombre_apellido  or nombre_apellido.strip() == "":
         st.warning("Debes ingresar tu usuario antes de dejar una review.")
         return
 
