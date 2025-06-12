@@ -7,11 +7,19 @@ def show_page_expo():
     # Load data
     expo = pd.read_csv('expo.csv')
 
-    # Add a filter to search by name
-    search_name = st.text_input("Buscar por nombre de titular")
-    if search_name:
-        expo = expo[expo['Titular'].str.contains(search_name, case=False, na=False)]
-
+    col_title, col_logo, col_simpa = st.columns([5, 1, 1])
+    with col_title:
+        st.header(f"Estado de mudanzas de EXPO")
+        col_title1, col_title2 = st.columns([1, 3])
+        with col_title1:
+                search_name = st.text_input("Buscar por nombre de titular")
+                if search_name:
+                    expo = expo[expo['Titular'].str.contains(search_name, case=False, na=False)]
+    with col_logo:
+        st.image('logo_ypf.png')
+    with col_simpa:
+        st.image('logo_liftvan.png')
+    
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
@@ -20,14 +28,6 @@ def show_page_expo():
         'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
     finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
-
-    col_title, col_logo, col_simpa = st.columns([5, 1, 1])
-    with col_title:
-        st.header(f"Estado de mudanzas de EXPO")
-    with col_logo:
-        st.image('logo_ypf.png')
-    with col_simpa:
-        st.image('logo_liftvan.png')
     col1, col2 = st.columns(2)
     col4, col5 = st.columns(2)
     with col4:
