@@ -87,7 +87,7 @@ def show_page_reviews_display():
             "puntualidad": "Puntualidad",
             "calidad_empaque": "Calidad Empaque"
         }
-        avg_by_cat = reviews[score_columns].mean().reset_index()
+        avg_by_cat = reviews[score_columns].mean().round(1).reset_index()
         avg_by_cat.columns = ["Categoría", "Promedio"]
         avg_by_cat["Categoría"] = avg_by_cat["Categoría"].map(categoria_map)
         fig_barh = px.bar(
