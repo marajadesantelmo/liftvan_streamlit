@@ -8,6 +8,11 @@ def show_page_review(username):
     with col1nombre:
         nombre_apellido = st.text_input("Nombre y Apellido")
 
+    # Require username before proceeding
+    if not username or username.strip() == "" or username == "anonimo":
+        st.warning("Debes ingresar tu usuario antes de dejar una review.")
+        return
+
     def star_input(label, key=None):
         return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
 

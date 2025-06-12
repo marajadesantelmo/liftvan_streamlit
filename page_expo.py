@@ -6,6 +6,12 @@ from datetime import datetime
 def show_page_expo():
     # Load data
     expo = pd.read_csv('expo.csv')
+
+    # Add a filter to search by name
+    search_name = st.text_input("Buscar por nombre de titular")
+    if search_name:
+        expo = expo[expo['Titular'].str.contains(search_name, case=False, na=False)]
+
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
@@ -49,5 +55,5 @@ if __name__ == "__main__":
     while True:
         show_page_expo()
         time.sleep(60)  
-        st.experimental_rerun() 
+        st.experimental_rerun()
 
