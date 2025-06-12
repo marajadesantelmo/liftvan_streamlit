@@ -18,6 +18,13 @@ def show_page_impo():
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
         st.header(f"Estado de mudanzas de IMPO")
+        col_title1, col_title2 = st.columns([1, 3])
+        with col_title1:
+            titulares = impo['Titular'].dropna().unique().tolist()
+            titulares.sort()
+            search_name = st.selectbox("Buscar por nombre de titular", options=["(Todos)"] + titulares)
+            if search_name and search_name != "(Todos)":
+                impo = impo[impo['Titular'] == search_name]
     with col_logo:
         st.image('logo_ypf.png')
     with col_simpa:
