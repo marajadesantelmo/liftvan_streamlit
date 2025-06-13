@@ -11,6 +11,7 @@ import page_nacionales
 from streamlit_option_menu import option_menu
 from streamlit_cookies_manager import EncryptedCookieManager
 import os
+import csv
 
 # Page configurations
 
@@ -20,13 +21,23 @@ with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
-USERNAMES = ["operativo", "administrativo"]
-PASSWORDS = ["op123", "adm123"]
+def load_users():
+    users = {}
+    with open('users.txt', 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith('#'):
+                if ':' in line:
+                    user, pwd = line.split(':', 1)
+                    users[user.strip()] = pwd.strip()
+    return users
+
+USERS = load_users()
+
+# Update login to check users.txt
 
 def login(username, password):
-    if username in USERNAMES and password in PASSWORDS:
-        return True
-    return False
+    return USERS.get(username) == password
 
 # Initialize cookies manager
 cookies = EncryptedCookieManager(prefix="dassa_", password="your_secret_password")
@@ -56,48 +67,53 @@ if not st.session_state['logged_in']:
         else:
             st.error("Usuario o clave invalidos")
 else:
-    
-    pages = [
-        "Importación", 
-        "Exportación", 
-        "Nacionales", 
-        "Agregar Review", 
-        "Ver Reviews", 
-        "Logout"
-    ]
-    icons = [
-        "arrow-down-circle", 
-        "arrow-up-circle", 
-        "clock-history", 
-        "star", 
-        "chat-dots", 
-        "box-arrow-right"
-    ]
+    # If user is employee, show full menu. If customer, show only their page.
+    employee_users = ["operativo", "administrativo"]
+    username = st.session_state.get("username", "")
+    if username in employee_users:
+        pages = [
+            "Importación", 
+            "Exportación", 
+            "Nacionales", 
+            "Agregar Review", 
+            "Ver Reviews", 
+            "Logout"
+        ]
+        icons = [
+            "arrow-down-circle", 
+            "arrow-up-circle", 
+            "clock-history", 
+            "star", 
+            "chat-dots", 
+            "box-arrow-right"
+        ]
 
-    page_selection = option_menu(
-            None,  # No menu title
-            pages,  
-            icons=icons,
-            menu_icon="cast",  
-            default_index=0, 
-            orientation="horizontal")
-    
-    if page_selection == "Importación":
-        page_impo.show_page_impo()
-    elif page_selection == "Exportación":
-        page_expo.show_page_expo()
-    elif page_selection == "Nacionales":
-        page_nacionales.show_page_nacionales()
-    elif page_selection == "Agregar Review":
-        page_review.show_page_review(st.session_state.get("username", "anonimo"))
-    elif page_selection == "Ver Reviews":
-        page_reviews_display.show_page_reviews_display()
-    elif page_selection == "Logout":
-        cookies.pop("logged_in", None)
-        cookies.pop("username", None)
-        cookies.save()
-        st.session_state['logged_in'] = False
-        st.session_state['username'] = ""
-        st.rerun()
+        page_selection = option_menu(
+                None,  # No menu title
+                pages,  
+                icons=icons,
+                menu_icon="cast",  
+                default_index=0, 
+                orientation="horizontal")
+        if page_selection == "Importación":
+            page_impo.show_page_impo()
+        elif page_selection == "Exportación":
+            page_expo.show_page_expo()
+        elif page_selection == "Nacionales":
+            page_nacionales.show_page_nacionales()
+        elif page_selection == "Agregar Review":
+            page_review.show_page_review(st.session_state.get("username", "anonimo"))
+        elif page_selection == "Ver Reviews":
+            page_reviews_display.show_page_reviews_display()
+        elif page_selection == "Logout":
+            cookies.pop("logged_in", None)
+            cookies.pop("username", None)
+            cookies.save()
+            st.session_state['logged_in'] = False
+            st.session_state['username'] = ""
+            st.rerun()
+    else:
+        import page_cliente
+        page_cliente.show_cliente_page(username)
 
 

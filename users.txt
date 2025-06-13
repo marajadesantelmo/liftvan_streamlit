@@ -1,0 +1,23 @@
+# This file contains the user credentials for the app
+# Format: username: password
+# Employees
+operativo:operativo123
+administrativo:administrativo123
+
+# Customers (auto-generated from expo.csv and impo.csv)
+rodriguez:cliente123
+gonzalez:cliente123
+perez:cliente123
+lopez:cliente123
+fernandez:cliente123
+martinez:cliente123
+torres:cliente123
+gomez:cliente123
+johnson:cliente123
+smith:cliente123
+brown:cliente123
+wilson:cliente123
+davis:cliente123
+miller:cliente123
+anderson:cliente123
+taylor:cliente123
