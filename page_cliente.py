@@ -23,3 +23,14 @@ def show_cliente_page(username):
     st.markdown('---')
     st.subheader('Dejanos tu review sobre el servicio')
     page_review.show_page_review(username)
+
+    # Logout button for customers
+    if st.button('Logout'):
+        from streamlit_cookies_manager import EncryptedCookieManager
+        cookies = EncryptedCookieManager(prefix="dassa_", password="your_secret_password")
+        cookies.pop("logged_in", None)
+        cookies.pop("username", None)
+        cookies.save()
+        st.session_state['logged_in'] = False
+        st.session_state['username'] = ""
+        st.rerun()

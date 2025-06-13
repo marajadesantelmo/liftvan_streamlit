@@ -4,7 +4,7 @@
 operativo:operativo123
 administrativo:administrativo123
 
-# Customers (auto-generated from expo.csv and impo.csv)
+# Customers 
 rodriguez:cliente123
 gonzalez:cliente123
 perez:cliente123
