@@ -1,8 +1,8 @@
 # This file contains the user credentials for the app
 # Format: username: password
 # Employees
-operativo:operativo123
-administrativo:administrativo123
+operativo:oper123
+administrativo:adm123
 
 # Customers 
 rodriguez:cliente123
