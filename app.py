@@ -114,6 +114,6 @@ else:
             st.rerun()
     else:
         import page_cliente
-        page_cliente.show_cliente_page(username)
+        page_cliente.show_cliente_page(username, cookies)
 
 

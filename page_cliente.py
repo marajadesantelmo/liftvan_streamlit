@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import page_review
 
-def show_cliente_page(username):
+def show_cliente_page(username, cookies):
     # Try to find the user in expo.csv or impo.csv
     first_name = username.capitalize()
     df_expo = pd.read_csv('expo.csv')
@@ -26,8 +26,6 @@ def show_cliente_page(username):
 
     # Logout button for customers
     if st.button('Logout'):
-        from streamlit_cookies_manager import EncryptedCookieManager
-        cookies = EncryptedCookieManager(prefix="dassa_", password="your_secret_password")
         cookies.pop("logged_in", None)
         cookies.pop("username", None)
         cookies.save()
