@@ -73,10 +73,10 @@ def show_cliente_page(username, cookies):
 
     col1, col2 = st.columns(2)
     with col1:
-        st.image("foto1.png", caption="Contenedor", use_column_width=True)
-        st.image("foto3.png", caption="Estado de la carga", use_column_width=True)
+        st.image("foto1.png", caption="Contenedor", width=200, use_container_width=True)
+        st.image("foto3.png", caption="Estado de la carga", width=200, use_container_width=True)
     with col2:
-        st.image("foto2.png", caption="Precinto", use_column_width=True)
-        st.image("foto4.png", caption="Carga en depósito", use_column_width=True)
+        st.image("foto2.png", caption="Precinto", width=200, use_container_width=True)
+        st.image("foto4.png", caption="Carga en depósito", width=200, use_container_width=True)
     st.markdown('---')
     page_review.show_page_review(username)
