@@ -60,15 +60,15 @@ def show_cliente_page(username, cookies):
     page_review.show_page_review(username)
 
     # Display logos and logout button in a flex row at the top right
-    st.markdown('''
-        <div style="display: flex; gap: 1.5rem; align-items: center; justify-content: flex-end; margin-bottom: 1rem;">
-            <img src="logo_ypf.png" style="height: 40px; width: auto;">
-            <img src="logo_liftvan.png" style="height: 40px; width: auto;">
-            <form action="#" method="post" style="margin:0;">
-                <button type="submit" name="logout_btn" style="background:#eee;border:1px solid #ccc;padding:4px 12px;border-radius:6px;font-size:13px;cursor:pointer;">Logout</button>
-            </form>
-        </div>
-    ''', unsafe_allow_html=True)
+    col_logo1, col_logo2, col_logout = st.columns([1, 1, 1])
+    with col_logo1:
+        st.image("logo_ypf.png", width=80)
+    with col_logo2:
+        st.image("logo_liftvan.png", width=80)
+    with col_logout:
+        st.write("")  # Spacer
+        if st.button("Logout", key="logout_btn"):
+            st.session_state['logout_btn'] = True
     # Handle logout button click
     if st.session_state.get('logout_btn'):
         # Logout logic as in app.py
