@@ -22,6 +22,7 @@ def show_cliente_page(username, cookies):
     row_impo = df_impo[df_impo['Titular'].str.split().str[0].str.lower() == username]
 
     st.header('Bienvenido/a, ' + first_name)
+    
     if not row_expo.empty:
         cola, colb, colc, cold = st.columns([5, 1, 1, 1])
         with cola: 
@@ -44,6 +45,7 @@ def show_cliente_page(username, cookies):
         with col1:
             st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
+        
     if not row_impo.empty:
         cola, colb, colc, cold = st.columns([5, 1, 1, 1])
         with cola: 
@@ -67,6 +69,23 @@ def show_cliente_page(username, cookies):
             st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_impo, hide_index=True, use_container_width=True)
 
+    if row_expo.empty and row_impo.empty:
+        cola, colb, colc, cold = st.columns([5, 1, 1, 1])
+        with cola:
+            st.warning('No se encontró información de operación para este usuario.')
+        with colb:
+            st.image("logo_ypf.png", width=80)
+        with colc:
+            st.image("logo_liftvan.png", width=80)
+        with cold:
+            st.write("")
+            if st.button("Logout", key="logout_btn_none"):
+                cookies["logged_in"] = str(False)
+                cookies["username"] = ""
+                cookies.save()
+                st.session_state['logged_in'] = False
+                st.session_state['username'] = ""
+                st.rerun()
 
     # Display 4 photos in a 2x2 layout
     def show_rotated_image(image_path, caption):
