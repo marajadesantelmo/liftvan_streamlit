@@ -6,7 +6,11 @@ def show_cliente_page(username, cookies):
     # Try to find the user in expo.csv or impo.csv
     first_name = username.capitalize()
     df_expo = pd.read_csv('expo.csv')
+    df_expo = df_expo[[['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+        'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal', 'Fecha Fiscal', 'Fecha Retiro', 'Estado']]]
     df_impo = pd.read_csv('impo.csv')
+    df_impo = df_impo[['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+       'Origen', 'Destino', 'Fecha Apertura', 'Fecha Arribo',  'Fecha Fiscal', 'Fecha Salida', 'Estado']]
     # Find rows where the first name matches
     row_expo = df_expo[df_expo['Titular'].str.split().str[0].str.lower() == username]
     row_impo = df_impo[df_impo['Titular'].str.split().str[0].str.lower() == username]
@@ -14,14 +18,29 @@ def show_cliente_page(username, cookies):
     st.header('Bienvenido/a, ' + first_name)
     if not row_expo.empty:
         st.subheader('Operación de Exportación')
+        estado = row_expo['Estado'].values[0]
+        st.markdown(
+            f"<div style='padding:10px; border-radius:8px; background-color:#f0f2f6; display:inline-block;'>"
+            f"<span style='font-weight:bold; color:#333;'>Estado:</span> "
+            f"<span style='font-size:1.2em; color:#0072C6;'>{estado}</span>"
+            f"</div>",
+            unsafe_allow_html=True
+        )
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
     if not row_impo.empty:
         st.subheader('Operación de Importación')
+        estado = row_impo['Estado'].values[0]
+        st.markdown(
+            f"<div style='padding:10px; border-radius:8px; background-color:#f0f2f6; display:inline-block;'>"
+            f"<span style='font-weight:bold; color:#333;'>Estado:</span> "
+            f"<span style='font-size:1.2em; color:#0072C6;'>{estado}</span>"
+            f"</div>",
+            unsafe_allow_html=True
+        )
         st.dataframe(row_impo, hide_index=True, use_container_width=True)
     if row_expo.empty and row_impo.empty:
         st.warning('No se encontró información de operación para este usuario.')
     st.markdown('---')
-    st.subheader('Dejanos tu review sobre el servicio')
     page_review.show_page_review(username)
 
     # Logout button for customers
