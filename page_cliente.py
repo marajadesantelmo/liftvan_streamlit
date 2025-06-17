@@ -32,8 +32,13 @@ def show_cliente_page(username, cookies):
             st.image("logo_liftvan.png", width=80)
         with cold:
             st.write("")  # Spacer
-            if st.button("Logout", key="logout_btn"):
-                st.session_state['logout_btn'] = True
+            if st.button("Logout", key="logout_btn_expo"):
+                cookies["logged_in"] = str(False)
+                cookies["username"] = ""
+                cookies.save()
+                st.session_state['logged_in'] = False
+                st.session_state['username'] = ""
+                st.rerun()
         estado = row_expo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
         with col1:
@@ -49,15 +54,19 @@ def show_cliente_page(username, cookies):
             st.image("logo_liftvan.png", width=80)
         with cold:
             st.write("")
-            if st.button("Logout", key="logout_btn"):
-                st.session_state['logout_btn'] = True
+            if st.button("Logout", key="logout_btn_impo"):
+                cookies["logged_in"] = str(False)
+                cookies["username"] = ""
+                cookies.save()
+                st.session_state['logged_in'] = False
+                st.session_state['username'] = ""
+                st.rerun()
         estado = row_impo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
         with col1:
             st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_impo, hide_index=True, use_container_width=True)
-    if row_expo.empty and row_impo.empty:
-        st.warning('No se encontró información de operación para este usuario.')
+
 
     # Display 4 photos in a 2x2 layout
     def show_rotated_image(image_path, caption):
@@ -67,7 +76,7 @@ def show_cliente_page(username, cookies):
         width, height = img.size
         img = img.resize((width // 2, height // 2))
         st.image(img, caption=caption, use_container_width=False)
-
+    st.markdown('---')
     col1, col2 = st.columns(2)
     with col1:
         show_rotated_image("foto1.png", "Contenedor")
@@ -77,12 +86,3 @@ def show_cliente_page(username, cookies):
         show_rotated_image("foto4.png", "Carga en depósito")
     st.markdown('---')
     page_review.show_page_review(username)
-
-    if st.session_state.get('logout_btn'):
-        # Logout logic as in app.py
-        cookies["logged_in"] = False
-        cookies["username"] = ""
-        cookies.save()
-        st.session_state['logged_in'] = False
-        st.session_state['username'] = ""
-        st.rerun()
