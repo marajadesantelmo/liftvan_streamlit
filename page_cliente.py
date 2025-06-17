@@ -33,7 +33,7 @@ def show_cliente_page(username, cookies):
         with cold:
             st.write("")  # Spacer
             if st.button("Logout", key="logout_btn_expo"):
-                cookies["logged_in"] = False
+                cookies["logged_in"] = str(False)
                 cookies["username"] = ""
                 cookies.save()
                 st.session_state['logged_in'] = False
@@ -55,7 +55,7 @@ def show_cliente_page(username, cookies):
         with cold:
             st.write("")
             if st.button("Logout", key="logout_btn_impo"):
-                cookies["logged_in"] = False
+                cookies["logged_in"] = str(False)
                 cookies["username"] = ""
                 cookies.save()
                 st.session_state['logged_in'] = False
