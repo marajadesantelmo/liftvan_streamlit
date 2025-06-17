@@ -67,3 +67,9 @@ def show_cliente_page(username, cookies):
         st.session_state['logged_in'] = False
         st.session_state['username'] = ""
         st.rerun()
+
+    # Display logos with custom HTML/CSS for precise sizing
+    st.markdown('<div style="display: flex; gap: 2rem; align-items: center; justify-content: flex-end; margin-bottom: 1rem;">'
+                '<img src="logo_ypf.png" style="height: 48px; width: auto;">'
+                '<img src="logo_liftvan.png" style="height: 48px; width: auto;">'
+                '</div>', unsafe_allow_html=True)
