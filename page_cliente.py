@@ -23,7 +23,7 @@ def show_cliente_page(username, cookies):
 
     st.header('Bienvenido/a, ' + first_name)
     if not row_expo.empty:
-        cola, colb, colc, cold = st.columns([5, 1, 1, 1]):
+        cola, colb, colc, cold = st.columns([5, 1, 1, 1])
         with cola: 
                 st.subheader('Operación de Exportación')
         with colb:
@@ -40,7 +40,7 @@ def show_cliente_page(username, cookies):
             st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
     if not row_impo.empty:
-        cola, colb, colc, cold = st.columns([5, 1, 1, 1]):
+        cola, colb, colc, cold = st.columns([5, 1, 1, 1])
         with cola: 
             st.subheader('Operación de Importación')
         with colb:
