@@ -8,7 +8,7 @@ def show_cliente_page(username, cookies):
     df_expo = pd.read_csv('expo.csv')
     # Select relevant columns for expo
     expo_columns = ['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-                    'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal', 'Fecha Retiro', 'Estado']
+                    'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal', 'Estado']
     df_expo = df_expo[expo_columns]
 
     # Load and select relevant columns for impo
