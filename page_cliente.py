@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import page_review
+from PIL import Image
 
 def show_cliente_page(username, cookies):
     # Try to find the user in expo.csv or impo.csv
@@ -39,13 +40,22 @@ def show_cliente_page(username, cookies):
         st.warning('No se encontró información de operación para este usuario.')
 
     # Display 4 photos in a 2x2 layout
+    def show_rotated_image(image_path, caption):
+        img = Image.open(image_path)
+        # Rotate 90 degrees counterclockwise (left)
+        img = img.rotate(90, expand=True)
+        # Resize to 50% of original size
+        width, height = img.size
+        img = img.resize((width // 2, height // 2))
+        st.image(img, caption=caption, use_container_width=False)
+
     col1, col2 = st.columns(2)
     with col1:
-        st.image("foto1.jpg", caption="Foto 1", use_column_width=True)
-        st.image("foto3.jpg", caption="Foto 3", use_column_width=True)
+        show_rotated_image("foto1.jpg", "Contenedor")
+        show_rotated_image("foto3.jpg", "Estado de la carga")
     with col2:
-        st.image("foto2.jpg", caption="Foto 2", use_column_width=True)
-        st.image("foto4.jpg", caption="Foto 4", use_column_width=True)
+        show_rotated_image("foto2.jpg", "Precinto")
+        show_rotated_image("foto4.jpg", "Carga en depósito")
     st.markdown('---')
     page_review.show_page_review(username)
 
