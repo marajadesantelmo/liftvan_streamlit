@@ -71,8 +71,9 @@ def show_cliente_page(username, cookies):
     ''', unsafe_allow_html=True)
     # Handle logout button click
     if st.session_state.get('logout_btn') or st.experimental_get_query_params().get('logout_btn'):
-        cookies.pop("logged_in", None)
-        cookies.pop("username", None)
+        # Logout logic as in app.py
+        cookies["logged_in"] = False
+        cookies["username"] = ""
         cookies.save()
         st.session_state['logged_in'] = False
         st.session_state['username'] = ""
