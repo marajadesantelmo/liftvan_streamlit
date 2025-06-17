@@ -23,14 +23,35 @@ def show_cliente_page(username, cookies):
 
     st.header('Bienvenido/a, ' + first_name)
     if not row_expo.empty:
-        st.subheader('Operación de Exportación')
+        cola, colb, colc, cold = st.columns([5, 1, 1, 1]):
+        with cola: 
+                st.subheader('Operación de Exportación')
+        with colb:
+            st.image("logo_ypf.png", width=80)
+        with colc:
+            st.image("logo_liftvan.png", width=80)
+        with cold:
+            st.write("")  # Spacer
+            if st.button("Logout", key="logout_btn"):
+                st.session_state['logout_btn'] = True
         estado = row_expo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
         with col1:
             st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
     if not row_impo.empty:
-        st.subheader('Operación de Importación')
+        cola, colb, colc, cold = st.columns([5, 1, 1, 1]):
+        with cola: 
+            st.subheader('Operación de Importación')
+        with colb:
+            st.image("logo_ypf.png", width=80)
+        with colc:
+            st.image("logo_liftvan.png", width=80)
+        with cold:
+            st.write("")
+            if st.button("Logout", key="logout_btn"):
+                st.session_state['logout_btn'] = True
+
         estado = row_impo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
         with col1:
@@ -59,17 +80,6 @@ def show_cliente_page(username, cookies):
     st.markdown('---')
     page_review.show_page_review(username)
 
-    # Display logos and logout button in a flex row at the top right
-    col_logo1, col_logo2, col_logout = st.columns([1, 1, 1])
-    with col_logo1:
-        st.image("logo_ypf.png", width=80)
-    with col_logo2:
-        st.image("logo_liftvan.png", width=80)
-    with col_logout:
-        st.write("")  # Spacer
-        if st.button("Logout", key="logout_btn"):
-            st.session_state['logout_btn'] = True
-    # Handle logout button click
     if st.session_state.get('logout_btn'):
         # Logout logic as in app.py
         cookies["logged_in"] = False
