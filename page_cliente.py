@@ -37,6 +37,15 @@ def show_cliente_page(username, cookies):
         st.info(f"Estado de la operación: {estado}")
     if row_expo.empty and row_impo.empty:
         st.warning('No se encontró información de operación para este usuario.')
+
+    # Display 4 photos in a 2x2 layout
+    col1, col2 = st.columns(2)
+    with col1:
+        st.image("foto1.jpg", caption="Foto 1", use_column_width=True)
+        st.image("foto3.jpg", caption="Foto 3", use_column_width=True)
+    with col2:
+        st.image("foto2.jpg", caption="Foto 2", use_column_width=True)
+        st.image("foto4.jpg", caption="Foto 4", use_column_width=True)
     st.markdown('---')
     page_review.show_page_review(username)
 
