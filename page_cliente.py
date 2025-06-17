@@ -51,11 +51,11 @@ def show_cliente_page(username, cookies):
 
     col1, col2 = st.columns(2)
     with col1:
-        show_rotated_image("foto1.jpg", "Contenedor")
-        show_rotated_image("foto3.jpg", "Estado de la carga")
+        show_rotated_image("foto1.png", "Contenedor")
+        show_rotated_image("foto3.png", "Estado de la carga")
     with col2:
-        show_rotated_image("foto2.jpg", "Precinto")
-        show_rotated_image("foto4.jpg", "Carga en depósito")
+        show_rotated_image("foto2.png", "Precinto")
+        show_rotated_image("foto4.png", "Carga en depósito")
     st.markdown('---')
     page_review.show_page_review(username)
 
