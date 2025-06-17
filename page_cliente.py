@@ -64,7 +64,6 @@ def show_cliente_page(username, cookies):
     def show_rotated_image(image_path, caption):
         img = Image.open(image_path)
         # Rotate 90 degrees clockwise (right)
-        img = img.rotate(-90, expand=True)
         # Resize to 50% of original size
         width, height = img.size
         img = img.resize((width // 2, height // 2))
