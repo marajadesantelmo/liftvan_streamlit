@@ -24,14 +24,14 @@ def show_cliente_page(username, cookies):
     if not row_expo.empty:
         st.subheader('Operación de Exportación')
         estado = row_expo['Estado'].values[0]
-        col1, col2 = st.columns([1, 7])
+        col1, col2 = st.columns([1, 3])
         with col1:
-            st.info(f"Estado: {estado}")
+            st.info(f"Estado de la operación: {estado}")
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
     if not row_impo.empty:
         st.subheader('Operación de Importación')
         estado = row_impo['Estado'].values[0]
-        col1, col2 = st.columns([1, 7])
+        col1, col2 = st.columns([1, 3])
         with col1:
             st.info(f"Estado: {estado}")
         st.info(f"Estado de la operación: {estado}")
