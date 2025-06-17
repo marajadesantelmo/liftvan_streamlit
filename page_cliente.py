@@ -70,7 +70,7 @@ def show_cliente_page(username, cookies):
         </div>
     ''', unsafe_allow_html=True)
     # Handle logout button click
-    if st.session_state.get('logout_btn') or st.experimental_get_query_params().get('logout_btn'):
+    if st.session_state.get('logout_btn'):
         # Logout logic as in app.py
         cookies["logged_in"] = False
         cookies["username"] = ""
