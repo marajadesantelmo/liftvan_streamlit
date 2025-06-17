@@ -70,22 +70,13 @@ def show_cliente_page(username, cookies):
     if row_expo.empty and row_impo.empty:
         st.warning('No se encontró información de operación para este usuario.')
 
-    # Display 4 photos in a 2x2 layout
-    def show_rotated_image(image_path, caption):
-        img = Image.open(image_path)
-        # Rotate 90 degrees clockwise (right)
-        img = img.rotate(90)
-        # Resize to 50% of original size
-        width, height = img.size
-        img = img.resize((width // 2, height // 2))
-        st.image(img, caption=caption, use_container_width=False)
 
     col1, col2 = st.columns(2)
     with col1:
-        show_rotated_image("foto1.png", "Contenedor")
-        show_rotated_image("foto3.png", "Estado de la carga")
+        st.image("foto1.png", caption="Contenedor", use_column_width=True)
+        st.image("foto3.png", caption="Estado de la carga", use_column_width=True)
     with col2:
-        show_rotated_image("foto2.png", "Precinto")
-        show_rotated_image("foto4.png", "Carga en depósito")
+        st.image("foto2.png", caption="Precinto", use_column_width=True)
+        st.image("foto4.png", caption="Carga en depósito", use_column_width=True)
     st.markdown('---')
     page_review.show_page_review(username)
