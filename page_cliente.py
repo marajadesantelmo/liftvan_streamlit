@@ -32,13 +32,8 @@ def show_cliente_page(username, cookies):
             st.image("logo_liftvan.png", width=80)
         with cold:
             st.write("")  # Spacer
-            if st.button("Logout", key="logout_btn_expo"):
-                cookies["logged_in"] = str(False)
-                cookies["username"] = ""
-                cookies.save()
-                st.session_state['logged_in'] = False
-                st.session_state['username'] = ""
-                st.rerun()
+            if st.button("Logout", key="logout_btn"):
+                st.session_state['logout_btn'] = True
         estado = row_expo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
         with col1:
@@ -54,13 +49,8 @@ def show_cliente_page(username, cookies):
             st.image("logo_liftvan.png", width=80)
         with cold:
             st.write("")
-            if st.button("Logout", key="logout_btn_impo"):
-                cookies["logged_in"] = str(False)
-                cookies["username"] = ""
-                cookies.save()
-                st.session_state['logged_in'] = False
-                st.session_state['username'] = ""
-                st.rerun()
+            if st.button("Logout", key="logout_btn"):
+                st.session_state['logout_btn'] = True
 
         estado = row_impo['Estado'].values[0]
         col1, col2 = st.columns([1, 3])
@@ -70,13 +60,31 @@ def show_cliente_page(username, cookies):
     if row_expo.empty and row_impo.empty:
         st.warning('No se encontró información de operación para este usuario.')
 
+    # Display 4 photos in a 2x2 layout
+    def show_rotated_image(image_path, caption):
+        img = Image.open(image_path)
+        # Rotate 90 degrees clockwise (right)
+        img = img.rotate(-90, expand=True)
+        # Resize to 50% of original size
+        width, height = img.size
+        img = img.resize((width // 2, height // 2))
+        st.image(img, caption=caption, use_container_width=False)
 
     col1, col2 = st.columns(2)
     with col1:
-        st.image("foto1.png", caption="Contenedor", width=200, use_container_width=True)
-        st.image("foto3.png", caption="Estado de la carga", width=200, use_container_width=True)
+        show_rotated_image("foto1.png", "Contenedor")
+        show_rotated_image("foto3.png", "Estado de la carga")
     with col2:
-        st.image("foto2.png", caption="Precinto", width=200, use_container_width=True)
-        st.image("foto4.png", caption="Carga en depósito", width=200, use_container_width=True)
+        show_rotated_image("foto2.png", "Precinto")
+        show_rotated_image("foto4.png", "Carga en depósito")
     st.markdown('---')
     page_review.show_page_review(username)
+
+    if st.session_state.get('logout_btn'):
+        # Logout logic as in app.py
+        cookies["logged_in"] = False
+        cookies["username"] = ""
+        cookies.save()
+        st.session_state['logged_in'] = False
+        st.session_state['username'] = ""
+        st.rerun()
