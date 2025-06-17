@@ -24,25 +24,17 @@ def show_cliente_page(username, cookies):
     if not row_expo.empty:
         st.subheader('Operación de Exportación')
         estado = row_expo['Estado'].values[0]
-        st.markdown(
-            f"<div style='padding:10px; border-radius:8px; background-color:#f0f2f6; display:inline-block;'>"
-            f"<span style='font-weight:bold; color:#333;'>Estado:</span> "
-            f"<span style='font-size:1.2em; color:#0072C6;'>{estado}</span>"
-            f"</div>",
-            unsafe_allow_html=True
-        )
+        col1, col2 = st.columns([1, 7])
+        with col1:
+            st.info(f"Estado: {estado}")
         st.dataframe(row_expo, hide_index=True, use_container_width=True)
     if not row_impo.empty:
         st.subheader('Operación de Importación')
         estado = row_impo['Estado'].values[0]
-        st.markdown(
-            f"<div style='padding:10px; border-radius:8px; background-color:#f0f2f6; display:inline-block;'>"
-            f"<span style='font-weight:bold; color:#333;'>Estado:</span> "
-            f"<span style='font-size:1.2em; color:#0072C6;'>{estado}</span>"
-            f"</div>",
-            unsafe_allow_html=True
-        )
-        st.dataframe(row_impo, hide_index=True, use_container_width=True)
+        col1, col2 = st.columns([1, 7])
+        with col1:
+            st.info(f"Estado: {estado}")
+        st.info(f"Estado de la operación: {estado}")
     if row_expo.empty and row_impo.empty:
         st.warning('No se encontró información de operación para este usuario.')
     st.markdown('---')
