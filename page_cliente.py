@@ -59,17 +59,21 @@ def show_cliente_page(username, cookies):
     st.markdown('---')
     page_review.show_page_review(username)
 
-    # Logout button for customers
-    if st.button('Logout'):
+    # Display logos and logout button in a flex row at the top right
+    st.markdown('''
+        <div style="display: flex; gap: 1.5rem; align-items: center; justify-content: flex-end; margin-bottom: 1rem;">
+            <img src="logo_ypf.png" style="height: 40px; width: auto;">
+            <img src="logo_liftvan.png" style="height: 40px; width: auto;">
+            <form action="#" method="post" style="margin:0;">
+                <button type="submit" name="logout_btn" style="background:#eee;border:1px solid #ccc;padding:4px 12px;border-radius:6px;font-size:13px;cursor:pointer;">Logout</button>
+            </form>
+        </div>
+    ''', unsafe_allow_html=True)
+    # Handle logout button click
+    if st.session_state.get('logout_btn') or st.experimental_get_query_params().get('logout_btn'):
         cookies.pop("logged_in", None)
         cookies.pop("username", None)
         cookies.save()
         st.session_state['logged_in'] = False
         st.session_state['username'] = ""
         st.rerun()
-
-    # Display logos with custom HTML/CSS for precise sizing
-    st.markdown('<div style="display: flex; gap: 2rem; align-items: center; justify-content: flex-end; margin-bottom: 1rem;">'
-                '<img src="logo_ypf.png" style="height: 48px; width: auto;">'
-                '<img src="logo_liftvan.png" style="height: 48px; width: auto;">'
-                '</div>', unsafe_allow_html=True)
