@@ -14,7 +14,7 @@ def show_page_review(username):
         return
 
     def star_input(label, key=None):
-        return st.slider(label, 1, 5, 3, format="%d ⭐", key=key)
+        return st.slider(label, 1, 5, 5, format="%d ⭐", key=key)
 
     # Two columns for Coordinador and Embaladores
     col1, col2 = st.columns(2)

@@ -87,21 +87,28 @@ def show_cliente_page(username, cookies):
                 st.session_state['username'] = ""
                 st.rerun()
 
-    # Display 4 photos in a 2x2 layout
-    def show_rotated_image(image_path, caption):
-        img = Image.open(image_path)
-        # Rotate 90 degrees clockwise (right)
-        # Resize to 50% of original size
-        width, height = img.size
-        img = img.resize((width // 2, height // 2))
-        st.image(img, caption=caption, use_container_width=False)
-    st.markdown('---')
-    col1, col2 = st.columns(2)
-    with col1:
-        show_rotated_image("foto1.png", "Contenedor")
-        show_rotated_image("foto3.png", "Estado de la carga")
-    with col2:
-        show_rotated_image("foto2.png", "Precinto")
-        show_rotated_image("foto4.png", "Carga en depósito")
-    st.markdown('---')
-    page_review.show_page_review(username)
+        # Main sections with tabs
+        tab_review, tab_photos = st.tabs([
+            "🔬 Ingresar review", 
+            "📚 Fotos de mi operación"
+        ])
+
+        with tab_photos:
+            # Display 4 photos in a 2x2 layout
+            def show_resized_image(image_path, caption):
+                img = Image.open(image_path)
+                width, height = img.size
+                img = img.resize((width // 2, height // 2))
+                st.image(img, caption=caption, use_container_width=False)
+            st.markdown('---')
+            col1, col2 = st.columns(2)
+            with col1:
+                show_resized_image("foto1.png", "Contenedor")
+                show_resized_image("foto3.png", "Estado de la carga")
+            with col2:
+                show_resized_image("foto2.png", "Precinto")
+                show_resized_image("foto4.png", "Carga en depósito")
+            st.markdown('---')
+
+        with tab_review:
+            page_review.show_page_review(username)
