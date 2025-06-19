@@ -1,4 +1,4 @@
-Titular,Domicilio,Localidad,M3Esti,Estado,Coordinador,Origen,Destino,Fecha Apertura,ETD,ETA,Fecha Arribo,Fecha Verificacion, Fecha Fiscal,Fecha Retiro,Fecha Desembala,M3Reales,Libras,Kilos,Bultos
+Titular,Domicilio,Localidad,M3Esti,Estado,Coordinador,Origen,Destino,Fecha Apertura,ETD,ETA,Fecha Arribo,Fecha Verificacion,Fecha Fiscal,Fecha Retiro,Fecha Desembala,M3Reales,Libras,Kilos,Bultos
 Johnson Emily,Calle Roble 123,Buenos Aires,12.4,Abierto,Luciana Torres,U.S.A.,Argentina,2025-02-01,2025-03-01,2025-03-15,,,,,,,,,
 Smith Robert,Av. Palmera 456,Córdoba,8.9,Abierto,Luciana Torres,Canada,Argentina,2025-02-05,2025-03-03,2025-03-20,,,,,,,,,
 Brown Thomas,Calle Pino 789,Rosario,15.2,Arribado,Tomás Giménez,UK,Argentina,2025-01-10,2025-02-1,2025-02-20,2025-02-22,2025-02-23,,,,,,,
