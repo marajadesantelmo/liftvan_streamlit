@@ -7,9 +7,9 @@ def show_page_impo():
     # Load data
     impo = pd.read_csv('impo.csv')
     abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-       'Origen', 'Destino', 'Fecha Apertura', 'ETA']]
+       'Origen', 'Destino', 'Fecha Apertura', 'ETA', 'ETD']]
     arribados = impo[impo['Estado'] == 'Arribado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-         'Origen', 'Destino', 'ETA', 'Fecha Fiscal', 'Fecha Verificacion']]
+         'Origen', 'Destino', 'ETA', 'Fecha Verificacion']]
     en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
          'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Retiro']]
     finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
