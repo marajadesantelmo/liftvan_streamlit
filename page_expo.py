@@ -26,6 +26,7 @@ def show_page_expo():
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
     en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
     finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
+    
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Abiertos")

@@ -75,7 +75,6 @@ else:
             "Importación", 
             "Exportación", 
             "Nacionales", 
-            "Agregar Review", 
             "Ver Reviews", 
             "Logout"
         ]
@@ -83,7 +82,6 @@ else:
             "arrow-down-circle", 
             "arrow-up-circle", 
             "clock-history", 
-            "star", 
             "chat-dots", 
             "box-arrow-right"
         ]
