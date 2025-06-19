@@ -22,11 +22,11 @@ def show_page_expo():
     with col_simpa:
         st.image('logo_liftvan.png')
     
-    abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
-    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
-    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
-    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
-    
+    abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
+    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
+    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
+    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
+
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Abiertos")
