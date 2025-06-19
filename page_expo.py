@@ -22,21 +22,16 @@ def show_page_expo():
     with col_simpa:
         st.image('logo_liftvan.png')
     
-    abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
-    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
-    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
-    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
+    abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
+    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
+    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
+    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
     col1, col2 = st.columns(2)
-    col4, col5 = st.columns(2)
-    with col4:
+    with col1:
         st.subheader("Abiertos")
         st.dataframe(abiertos,
                      hide_index=True, use_container_width=True)
-    with col5:
+    with col2:
         st.subheader("Embalados")
         st.dataframe(embalados,
                     hide_index=True, use_container_width=True)

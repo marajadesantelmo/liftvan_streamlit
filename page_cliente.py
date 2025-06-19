@@ -8,13 +8,13 @@ def show_cliente_page(username, cookies):
     first_name = username.capitalize()
     df_expo = pd.read_csv('expo.csv')
     # Select relevant columns for expo
-    expo_columns = ['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+    expo_columns = ['Titular', 'Coordinador',
                     'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal', 'Estado']
     df_expo = df_expo[expo_columns]
 
     # Load and select relevant columns for impo
     df_impo = pd.read_csv('impo.csv')
-    impo_columns = ['Titular', 'Domicilio', 'Localidad', 'Coordinador',
+    impo_columns = ['Titular',  'Coordinador',
                     'Origen', 'Destino', 'Fecha Apertura', 'ETA', 'Fecha Fiscal', 'Estado']
     df_impo = df_impo[impo_columns]
     # Find rows where the first name matches
