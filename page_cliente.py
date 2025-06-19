@@ -87,11 +87,11 @@ def show_cliente_page(username, cookies):
                 st.session_state['username'] = ""
                 st.rerun()
 
-        # Main sections with tabs
-        tab_review, tab_photos = st.tabs([
-            "🔬 Ingresar review", 
-            "📚 Fotos de mi operación"
-        ])
+    # Main sections with tabs
+    tab_review, tab_photos = st.tabs([
+        "🔬 Ingresar review", 
+        "📚 Fotos de mi operación"
+    ])
 
     with tab_photos:
         # Display 4 photos in a 2x2 layout
