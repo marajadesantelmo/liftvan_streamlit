@@ -6,10 +6,10 @@ from datetime import datetime
 def show_page_impo():
     # Load data
     impo = pd.read_csv('impo.csv')
-    abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'Fecha Apertura', 'ETA', 'ETD']]
+    abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD']]
     arribados = impo[impo['Estado'] == 'Arribado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion']]
-    en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'Fecha Fiscal', 'Fecha Entrega']]
-    finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'Fecha Retiro', 'Fecha Entrega', 'Fecha Desembala']]
+    en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Entrega']]
+    finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Retiro', 'Fecha Entrega', 'Quality Report']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
