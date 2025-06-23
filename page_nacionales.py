@@ -34,18 +34,12 @@ def show_page_nacionales():
         st.dataframe(abiertos,
                      hide_index=True, use_container_width=True)
     with col5:
-        st.subheader("Embalados")
+        st.subheader("En Tránsito")
         st.dataframe(embalados,
                     hide_index=True, use_container_width=True)
     st.markdown("<hr>", unsafe_allow_html=True)
 
-    col4, col5 = st.columns(2)
-    with col4:
-        st.subheader("En deposito")
-        st.dataframe(en_deposito,
-                     hide_index=True, use_container_width=True)
-    with col5:
-        st.subheader("Finalizados")
-        st.dataframe(finalizados,
-                    hide_index=True, use_container_width=True)
+    st.subheader("Finalizados")
+    st.dataframe(finalizados,
+                hide_index=True, use_container_width=True)
 
