@@ -1,4 +1,4 @@
-Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Salida,Fecha Llegada,M3Reales,Libras,Kilos,Bultos
+Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Salida,Fecha Cierre,M3Reales,Libras,Kilos,Bultos
 Sanchez Laura,Av. Rivadavia 1000,Salta,MoveNac Norte,10.0,Abierto,21,Marcos Ruiz,31,Silvia Gomez,Salta,Buenos Aires,2025-03-01,,,,,,,,787
 Martinez Pablo,Calle Mitre 200,Santa Fe,MoveNac Sur,7.5,Embalado,22,Marcos Ruiz,32,Silvia Gomez,Santa Fe,Cordoba,2025-02-20,2025-02-25,,,,7.2,1587.0,720.0,10.0
 Fernandez Lucia,Av. San Juan 300,Tucuman,MoveNac Centro,12.0,En deposito,23,Marcos Ruiz,33,Silvia Gomez,Tucuman,Mendoza,2025-02-10,2025-02-15,2025-02-20,,,11.8,2600.0,1180.0,14.0

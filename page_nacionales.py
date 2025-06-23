@@ -11,7 +11,7 @@ def show_page_nacionales():
     en_deposito = nacionales[nacionales['Estado'] == 'En deposito'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
         'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
     finalizados = nacionales[nacionales['Estado'] == 'Finalizado'][['Titular', 'Domicilio', 'Localidad', 'Coordinador',
-        'Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
+        'Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal',  'Fecha Cierre']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
