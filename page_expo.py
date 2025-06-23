@@ -4,7 +4,6 @@ import time
 from datetime import datetime
 
 def show_page_expo():
-    # Load data
     expo = pd.read_csv('expo.csv')
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
