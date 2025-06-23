@@ -1,4 +1,4 @@
-Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Verificacion,ETD,Fecha Llegada,M3Reales,Libras,Kilos,Bultos,Tipo,,Quality Report
+Titular,Domicilio,Localidad,AgenteDestino,M3Esti,Estado,Codigo_Coord,Coordinador,Codigo_Vend,Vendedor,Origen,Destino,Fecha Apertura,Fecha Embalaje,Fecha Fiscal,Fecha Verificacion,ETD,Fecha Llegada,M3Reales,Libras,Kilos,Bultos,Tipo,Quality Report
 Rodriguez Maria,Av. Libertad 1234,Buenos Aires,MoveWay USA,15.5,Abierto,8,Luciana Torres,1,Diego Rivas,Argentina,U.S.A.,2025-02-15,,,,,,,,,,Maritimo,
 Gonzalez Roberto,Calle Paz 567,Córdoba,Global Move Canada,8.2,Abierto,10,Luciana Torres,20,Paula Lescano,Argentina,Canada,2025-02-10,,,,,,,,,,Maritimo,
 Perez Juan,Av. San Martin 890,Mendoza,MoveWay UK,12.3,Embalado,13,Tomás Giménez,1,Diego Rivas,Argentina,UK,2025-01-05,2025-01-15,,2025-01-16,,,12.5,2875.0,1250.0,18.0,Maritimo,
