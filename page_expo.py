@@ -24,8 +24,8 @@ def show_page_expo():
     
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Embalaje', 'Fecha Verificacion']]
-    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
-    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
+    en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo', 'Origen', 'Destino', 'Fecha Fiscal', 'ETD']]
+    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'ETD',  'Fecha Llegada']]
 
     col1, col2 = st.columns(2)
     with col1:
@@ -40,7 +40,7 @@ def show_page_expo():
 
     col4, col5 = st.columns(2)
     with col4:
-        st.subheader("En deposito")
+        st.subheader("En tránsito")
         st.dataframe(en_deposito,
                      hide_index=True, use_container_width=True)
     with col5:
