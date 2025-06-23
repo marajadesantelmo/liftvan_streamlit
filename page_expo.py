@@ -23,7 +23,7 @@ def show_page_expo():
         st.image('logo_liftvan.png')
     
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
-    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Embalaje', 'Fecha Fiscal']]
+    embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Embalaje', 'Fecha Verificacion']]
     en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo', 'Origen', 'Destino', 'Fecha Fiscal', 'Fecha Salida']]
     finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Salida',  'Fecha Llegada']]
 
