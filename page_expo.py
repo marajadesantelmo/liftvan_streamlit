@@ -25,7 +25,7 @@ def show_page_expo():
     abiertos = expo[expo['Estado'] == 'Abierto'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Apertura', 'Fecha Embalaje']]
     embalados = expo[expo['Estado'] == 'Embalado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'Fecha Embalaje', 'Fecha Verificacion']]
     en_deposito = expo[expo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo', 'Origen', 'Destino', 'Fecha Fiscal', 'ETD']]
-    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'ETD',  'Fecha Llegada','Quality Report']]
+    finalizados = expo[expo['Estado'] == 'Finalizado'][['Titular', 'Coordinador', 'Tipo','Origen', 'Destino', 'ETD',  'Fecha Desembalaje','Quality Report']]
 
     col1, col2 = st.columns(2)
     with col1:
