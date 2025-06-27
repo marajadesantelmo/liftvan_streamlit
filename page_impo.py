@@ -6,10 +6,6 @@ from datetime import datetime
 def show_page_impo():
     # Load data
     impo = pd.read_csv('impo.csv')
-    abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD']]
-    arribados = impo[impo['Estado'] == 'Arribado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion']]
-    en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Entrega']]
-    finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Retiro', 'Fecha Entrega', 'Quality Report']]
 
     col_title, col_logo, col_simpa = st.columns([5, 1, 1])
     with col_title:
@@ -25,6 +21,13 @@ def show_page_impo():
         st.image('logo_ypf.png')
     with col_simpa:
         st.image('logo_liftvan.png')
+    
+    # Apply the filtered dataframe to create the status-based dataframes
+    abiertos = impo[impo['Estado'] == 'Abierto'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD']]
+    arribados = impo[impo['Estado'] == 'Arribado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion']]
+    en_deposito = impo[impo['Estado'] == 'En deposito'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Entrega']]
+    finalizados = impo[impo['Estado'] == 'Finalizado'][['Titular', 'Coordinador','Tipo','Origen', 'Destino', 'ETA', 'ETD', 'Fecha Verificacion','Fecha Fiscal', 'Fecha Retiro', 'Fecha Entrega', 'Quality Report']]
+
     col1, col2 = st.columns(2)
     col4, col5 = st.columns(2)
     with col4:
