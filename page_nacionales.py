@@ -43,3 +43,7 @@ def show_page_nacionales():
     st.dataframe(finalizados,
                 hide_index=True, use_container_width=True)
 
+    # Contact footnote
+    st.markdown("---")
+    st.markdown("**Contacto:** Bernardo Urtubey - burtubey@liftvan.com")
+

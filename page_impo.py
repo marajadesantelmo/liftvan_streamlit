@@ -48,7 +48,11 @@ def show_page_impo():
     with col5:
         st.subheader("Finalizados")
         st.dataframe(finalizados,
-                     hide_index=True, use_container_width=True)
+                    hide_index=True, use_container_width=True)
+
+    # Contact footnote
+    st.markdown("---")
+    st.markdown("**Contacto:** Bernardo Urtubey - burtubey@liftvan.com")
 
 
 if __name__ == "__main__":

@@ -47,6 +47,10 @@ def show_page_expo():
         st.dataframe(finalizados,
                     hide_index=True, use_container_width=True)
 
+    # Contact footnote
+    st.markdown("---")
+    st.markdown("**Contacto:** Bernardo Urtubey - burtubey@liftvan.com")
+
 # Run the show_page function
 if __name__ == "__main__":
     while True:

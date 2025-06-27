@@ -112,3 +112,7 @@ def show_cliente_page(username, cookies):
 
     with tab_review:
         page_review.show_page_review(username)
+
+    # Contact footnote
+    st.markdown("---")
+    st.markdown("**Contacto:** Andres McQuillen - amcquillen@liftvan.com")
